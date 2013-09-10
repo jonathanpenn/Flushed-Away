@@ -37,6 +37,7 @@ enough for the shrinking ray to wear off?
 - Toys appear at random around the edges and swirl toward the center
 - As time increases, toys appear at a much higher frequency
 - Toys can bump into each other and respond with somewhat elastic collisions
+- Boat is pulled towards the drain. TODO: controls for the boat? Finger or a set of control pads?
 
 
 ## Credits
