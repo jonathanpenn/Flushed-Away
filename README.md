@@ -39,6 +39,13 @@ enough for the shrinking ray to wear off?
 - Toys can bump into each other and respond with somewhat elastic collisions
 - Boat is pulled towards the drain. TODO: controls for the boat? Finger or a set of control pads?
 
+### Boat Mechanic Discussion
+
+[jp] Brain Dump: I'm imagining where you touch your finger and it draws the
+boat to you at a constant velocity. If you let go, then it drifts toward the
+drain. The drain isn't a risk, then, while your finger is on the screen. The
+challenge comes from avoiding the swirling toys. Thoughts?
+
 
 ## Credits
 
