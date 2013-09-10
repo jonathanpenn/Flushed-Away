@@ -25,6 +25,7 @@ enough for the shrinking ray to wear off?
 - Toy images (maybe 10?) [From Vectors.me][vm]
 - Damage sound effect
 
+  [vm]: https://github.com/jonathanpenn/ToiletBowling
 
 ## Game Mechanics
 
@@ -48,4 +49,4 @@ Intro music lovingly ripped from Future Crew's [Second Reality Demo][sr], Copyri
 
 - [Purple Motion's Action Scene](http://modarchive.org/index.php?request=view_by_moduleid&query=60400)
 - [Skaven's Intro](http://modarchive.org/index.php?request=view_by_moduleid&query=60395)
-- [Vectors.me](http://vector.me/browse/202844/vintage_toys)
+- [Vectors.me][vm]
