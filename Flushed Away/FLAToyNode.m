@@ -37,7 +37,6 @@ static NSArray* s_methodNames;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     return [self performSelector:NSSelectorFromString(selectorString)];
 #pragma clang diagnostic pop
-    
 }
 
 + (instancetype)bearToyNode
