@@ -28,7 +28,7 @@
         self.world = [FLAWorldNode node];
         [self addChild:self.world];
 
-        self.physicsWorld.gravity = CGPointZero;
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
     }
     return self;
 }

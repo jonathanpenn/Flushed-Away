@@ -8,10 +8,12 @@
 
 #import "FLAWorldNode.h"
 #import "FLABoatNode.h"
+#import "FLAToyNode.h"
 
 @interface FLAWorldNode ()
 
 @property (nonatomic, strong) FLABoatNode *boat;
+@property (nonatomic, strong) FLAToyNode *duck;
 
 @end
 
@@ -24,6 +26,10 @@
         self.boat = [FLABoatNode node];
         [self addChild:self.boat];
         self.boat.physicsBody.angularVelocity = 0.3;
+        
+        self.duck = [FLAToyNode node];
+        [self addChild:self.duck];
+        self.duck.physicsBody.angularVelocity = 0.5;
     }
     return self;
 }

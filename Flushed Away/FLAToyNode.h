@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface FLAToyNode : SKNode
+@interface FLAToyNode : SKSpriteNode
+
+
 
 @end
