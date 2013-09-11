@@ -34,14 +34,15 @@
     backstoryLabel.numberOfLines = 0;
     backstoryLabel.textColor = [UIColor colorWithRed:79/255.0f green:179/255.0f blue:237/255.0f alpha:1];
     backstoryLabel.font = [UIFont boldSystemFontOfSize:18];[UIFont boldSystemFontOfSize:18];
-    CGRect labelFrame = CGRectMake(35, view.bounds.size.height, 320, view.bounds.size.height);
+    CGRect labelFrame = CGRectMake(35, view.bounds.size.height, 360, view.bounds.size.height);
     
-    NSString* backstory = @"While preparing to test your amazing shrinking ray on a full size boat, your 2 year old child accidentally activated it. Both you and the boat are now smaller than a toy.\n\nYour child decided to put you in the toilet and flush it. And now is throwing in more toys to watch everything	 go down the drain.\n\nWill you be able to last long enough for the shrinking ray to wear off?";
+    NSString* backstory = @"While preparing to test your amazing shrinking ray on a full size boat, your two year old child accidentally activated it. Both you and the boat are now smaller than a toy.\n\nYour child then put you in the toilet and flushed it.\n\nWith more toys thrown down the drain, will you be able to last long enough for the shrinking ray to wear off?";
 
     backstoryLabel.text = backstory;
     
-    CGSize backstorySize = [backstory sizeWithFont:backstoryLabel.font constrainedToSize:CGSizeMake(320, INT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize backstorySize = [backstory sizeWithFont:backstoryLabel.font constrainedToSize:CGSizeMake(labelFrame.size.width, INT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     labelFrame.size.height = backstorySize.height;
+    labelFrame.origin.x = (self.size.width/2) - labelFrame.size.width/2;
     
     backstoryLabel.frame = labelFrame;
     
@@ -50,7 +51,9 @@
     self.backstoryLabel = backstoryLabel;
 
     [UIView animateWithDuration:23.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height-100, labelFrame.size.width, labelFrame.size.height);
+        CGRect labelFrame = self.backstoryLabel.frame;
+        labelFrame.origin.y = -labelFrame.size.height-100;
+        self.backstoryLabel.frame = labelFrame;
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
