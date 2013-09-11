@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) NSMutableSet *toys;
 
+@property (nonatomic) NSTimeInterval lastTimeToySpawned;
+
 @end
 
 @implementation FLAWorldNode
@@ -39,6 +41,23 @@
 - (void)update:(NSTimeInterval)currentTime
 {
     [self.drain applyForceToNode:self.boat];
+
+    for (SKNode *toy in self.toys) {
+        [self.drain applyForceToNode:toy];
+    }
+
+    if (currentTime > self.lastTimeToySpawned + 3) {
+        [self spawnToy];
+        self.lastTimeToySpawned = currentTime;
+    }
+}
+
+- (void)spawnToy
+{
+    FLAToyNode *toy = [FLAToyNode node];
+
+    [self addChild:toy];
+    [self.toys addObject:toy];
 }
 
 @end
