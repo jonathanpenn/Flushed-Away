@@ -46,12 +46,12 @@
     if (self.fadeTimer) return;
 
     self.fadeCompletionBlock = completion;
-    self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(fadeIt) userInfo:nil repeats:YES];
+    self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(fadeIt) userInfo:nil repeats:YES];
 }
 
 - (void)fadeIt
 {
-    self.currentlyPlaying.volume -= 0.1;
+    self.currentlyPlaying.volume -= 0.05;
     if (self.currentlyPlaying.volume <= 0) {
         [self.fadeTimer invalidate];
         self.fadeTimer = nil;
