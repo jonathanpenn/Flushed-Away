@@ -47,7 +47,7 @@
     self.swirl2.alpha = 0.1;
     self.swirl2.zRotation = 1;
     [self addChild:self.swirl2];
-    SKAction *spin2 = [SKAction rotateByAngle:-3 duration:5];
+    SKAction *spin2 = [SKAction rotateByAngle:-4 duration:5];
     [self.swirl2 runAction:[SKAction repeatActionForever:spin2]];
 
     self.drain = [FLADrainNode node];
