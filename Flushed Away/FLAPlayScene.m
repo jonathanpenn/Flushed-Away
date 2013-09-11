@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) SKLabelNode *timeLabelNode;
 
+@property (nonatomic, assign) NSTimeInterval startTimeInterval;
+
 @end
 
 @implementation FLAPlayScene
@@ -41,7 +43,13 @@
 {
     [self.world update:currentTime];
     
-    self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1f", currentTime];
+    if (!self.startTimeInterval) {
+        self.startTimeInterval = currentTime;
+    }
+    
+    NSTimeInterval newTime = currentTime - self.startTimeInterval;
+    
+    self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1f", newTime];
 }
 
 - (void)resetScene
@@ -56,20 +64,23 @@
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;
     
+    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    self.timeLabelNode.fontSize = 16;
+    self.timeLabelNode.fontColor = [SKColor yellowColor];
+    self.timeLabelNode.text = @"0.0";
+    self.timeLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    self.timeLabelNode.position = CGPointMake(-220, 120);
+    self.timeLabelNode.alpha = 1;
+    [self addChild:self.timeLabelNode];
+}
+
+- (void)didMoveToView:(SKView *)view
+{
     self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     self.progressView.progress = 1.0;
     
     self.progressView.frame = CGRectMake(10, self.size.height - 20, 100, 10);
     [self.view addSubview:self.progressView];
-    
-    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-    self.timeLabelNode.fontSize = 20;
-    self.timeLabelNode.fontColor = [SKColor yellowColor];
-    self.timeLabelNode.text = @"0.0";
-    self.timeLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    self.timeLabelNode.position = CGPointMake(-200, 150);
-    self.timeLabelNode.alpha = 1;
-    [self addChild:self.timeLabelNode];
 }
 
 
@@ -133,7 +144,8 @@
 
 - (void)endGame
 {
-    
+    self.paused = YES;
+    self.world.alpha = 0.5;
 }
 
 @end
