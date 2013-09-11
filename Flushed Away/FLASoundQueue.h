@@ -11,8 +11,11 @@
 
 @interface FLASoundQueue : NSObject
 
++ (FLASoundQueue *)sharedSoundQueue;
+
 - (void)queueSoundFileNamed:(NSString *)filename loop:(BOOL)loop;
 
+- (void)fadeOutCompletion:(dispatch_block_t)completion;
 - (void)stopAndClear;
 - (void)start;
 

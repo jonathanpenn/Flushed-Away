@@ -91,8 +91,8 @@
         }
         self.lastTimeToySpawned = currentTime;
         self.toySpawnInterval-=0.10;
-        if (self.toySpawnInterval < 0.3) {
-            self.toySpawnInterval = 0.3;
+        if (self.toySpawnInterval < 0.1) {
+            self.toySpawnInterval = 0.1;
         }
     }
 

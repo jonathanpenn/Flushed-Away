@@ -15,7 +15,6 @@
 <SKPhysicsContactDelegate>
 
 @property (nonatomic, strong) FLAWorldNode *world;
-@property (nonatomic, strong) FLASoundQueue *soundQueue;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) SKLabelNode *timeLabelNode;
 
@@ -133,17 +132,15 @@
 
 - (void)startSounds
 {
+    [[FLASoundQueue sharedSoundQueue] queueSoundFileNamed:@"action_a_music" loop:NO];
+    [[FLASoundQueue sharedSoundQueue] queueSoundFileNamed:@"action_b_music_loop" loop:YES];
+    [[FLASoundQueue sharedSoundQueue] start];
+}
+
+- (void)playFlushSound
+{
     SKAction *flush = [SKAction playSoundFileNamed:@"toilet_flush_fx.aif" waitForCompletion:NO];
     [self runAction:flush];
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        if (self.gameEnded) return;
-        self.soundQueue = [[FLASoundQueue alloc] init];
-        [self.soundQueue queueSoundFileNamed:@"action_a_music" loop:NO];
-        [self.soundQueue queueSoundFileNamed:@"action_b_music_loop" loop:YES];
-        [self.soundQueue start];
-    });
 }
 
 - (void)boat:(FLABoatNode *)boat healthDidChange:(CGFloat)health
@@ -168,7 +165,7 @@
 
     [self.world runAction:[SKAction fadeAlphaTo:0.3 duration:1]];
 
-    [self.soundQueue stopAndClear];
+    [[FLASoundQueue sharedSoundQueue] fadeOutCompletion:nil];
 
     [self addChild:[FLAEndGameNode node]];
 }

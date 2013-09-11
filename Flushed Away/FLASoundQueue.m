@@ -12,9 +12,22 @@
 @property (nonatomic, strong) NSMutableArray *soundQueue;
 @property (nonatomic, strong) AVAudioPlayer *currentlyPlaying;
 @property (nonatomic) BOOL loopLastAudio;
+
+@property (nonatomic, strong) NSTimer *fadeTimer;
+@property (nonatomic, copy) dispatch_block_t fadeCompletionBlock;
 @end
 
 @implementation FLASoundQueue
+
++ (FLASoundQueue *)sharedSoundQueue
+{
+    static FLASoundQueue *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[self alloc] init];
+    });
+    return shared;
+}
 
 - (void)queueSoundFileNamed:(NSString *)filename loop:(BOOL)loop
 {
@@ -28,8 +41,30 @@
     if (loop) { self.loopLastAudio = YES; }
 }
 
+- (void)fadeOutCompletion:(dispatch_block_t)completion
+{
+    if (self.fadeTimer) return;
+
+    self.fadeCompletionBlock = completion;
+    self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(fadeIt) userInfo:nil repeats:YES];
+}
+
+- (void)fadeIt
+{
+    self.currentlyPlaying.volume -= 0.1;
+    if (self.currentlyPlaying.volume <= 0) {
+        [self.fadeTimer invalidate];
+        self.fadeTimer = nil;
+        [self stopAndClear];
+        if (self.fadeCompletionBlock) self.fadeCompletionBlock();
+        self.fadeCompletionBlock = nil;
+    }
+}
+
 - (void)stopAndClear
 {
+    if (self.fadeTimer) return;
+
     [self.currentlyPlaying stop];
     self.currentlyPlaying.delegate = nil;
     self.currentlyPlaying = nil;
@@ -39,12 +74,16 @@
 
 - (void)start
 {
+    if (self.fadeTimer) return;
+
     if (self.currentlyPlaying) return;
     [self playNext];
 }
 
 - (void)playNext
 {
+    if (self.fadeTimer) return;
+
     if ([self.soundQueue count] == 0) return;
     self.currentlyPlaying = [self.soundQueue firstObject];
     self.currentlyPlaying.delegate = self;

@@ -8,6 +8,7 @@
 
 #import "FLAStartCreditsScene.h"
 #import "FLABackStoryScene.h"
+#import "FLASoundQueue.h"
 
 @interface FLAStartCreditsScene ()
 @property (nonatomic, strong) NSTimer *timer;
@@ -31,6 +32,9 @@
         [self addChild:label];
 
         self.timer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(goToNextScene) userInfo:nil repeats:NO];
+
+        [[FLASoundQueue sharedSoundQueue] queueSoundFileNamed:@"intro_music" loop:NO];
+        [[FLASoundQueue sharedSoundQueue] start];
     }
     return self;
 }

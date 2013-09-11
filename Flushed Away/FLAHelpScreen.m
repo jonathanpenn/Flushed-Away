@@ -8,6 +8,7 @@
 
 #import "FLAHelpScreen.h"
 #import "FLAPlayScene.h"
+#import "FLASoundQueue.h"
 
 @implementation FLAHelpScreen
 
@@ -58,14 +59,16 @@
 
 - (void)play
 {
-    SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:1];
-    transition.pausesIncomingScene = YES;
-    
-    // Present the scene.
-    [self.view presentScene:scene transition:transition];
+    [[FLASoundQueue sharedSoundQueue] fadeOutCompletion:^{
+        SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+
+        SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:1];
+        transition.pausesIncomingScene = YES;
+
+        // Present the scene.
+        [self.view presentScene:scene transition:transition];
+    }];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
