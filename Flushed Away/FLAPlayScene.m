@@ -8,11 +8,13 @@
 
 #import "FLAPlayScene.h"
 #import "FLAWorldNode.h"
+#import "FLASoundQueue.h"
 
 @interface FLAPlayScene ()
 <SKPhysicsContactDelegate>
 
 @property (nonatomic, strong) FLAWorldNode *world;
+@property (nonatomic, strong) FLASoundQueue *soundQueue;
 
 @end
 
@@ -21,6 +23,8 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         [self resetScene];
+
+        [self startSounds];
     }
     return self;
 }
@@ -83,6 +87,20 @@
                                            [SKAction removeFromParent]
                                            ]];
     [node runAction:drown];
+}
+
+- (void)startSounds
+{
+    SKAction *flush = [SKAction playSoundFileNamed:@"toilet_flush_fx.aif" waitForCompletion:NO];
+    [self runAction:flush];
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.soundQueue = [[FLASoundQueue alloc] init];
+        [self.soundQueue queueSoundFileNamed:@"action_a_music" loop:NO];
+        [self.soundQueue queueSoundFileNamed:@"action_b_music_loop" loop:YES];
+        [self.soundQueue start];
+    });
 }
 
 @end
