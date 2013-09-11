@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) SKLabelNode *timeLabelNode;
 
-@property (nonatomic) BOOL gameEnded;
+@property (nonatomic) BOOL gameEnded, gameEnding;
 
 @property (nonatomic, assign) NSTimeInterval startTimeInterval;
 
@@ -63,6 +63,7 @@
     [self removeAllActions];
 
     self.gameEnded = NO;
+    self.gameEnding = NO;
     self.startTimeInterval = 0;
 
     self.world = [FLAWorldNode node];
@@ -160,14 +161,21 @@
 
     self.gameEnded = YES;
 
-    SKAction *flush = [SKAction playSoundFileNamed:@"toilet_flush_fx.aif" waitForCompletion:NO];
-    [self runAction:flush];
+    [self playFlushSound];
 
     [self.world runAction:[SKAction fadeAlphaTo:0.3 duration:1]];
 
     [[FLASoundQueue sharedSoundQueue] fadeOutCompletion:nil];
 
-    [self addChild:[FLAEndGameNode node]];
+    self.gameEnding = YES;
+    FLAEndGameNode *node = [FLAEndGameNode node];
+    [self addChild:node];
+    [node runAction:[SKAction sequence:@[
+                                         [SKAction fadeAlphaTo:1 duration:1],
+                                         [SKAction waitForDuration:1],
+                                         [SKAction runBlock:^{
+        self.gameEnding = NO;
+    }]]]];
 }
 
 
@@ -175,16 +183,20 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.gameEnding) return;
     [self.world touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.gameEnding) return;
     [self.world touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.gameEnding) return;
+
     if (self.gameEnded) {
         [self resetScene];
     } else {
@@ -194,6 +206,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.gameEnding) return;
     [self.world touchesCancelled:touches withEvent:event];
 }
 

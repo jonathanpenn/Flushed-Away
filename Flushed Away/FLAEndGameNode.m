@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
         label.fontSize = 20;
         label.fontColor = [SKColor whiteColor];
         label.text = @"Game Over";
