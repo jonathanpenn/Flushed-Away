@@ -15,6 +15,7 @@
 #define kMinDamage      10
 
 @interface FLABoatNode ()
+@property (nonatomic) BOOL injured;
 @end
 
 @implementation FLABoatNode
@@ -46,17 +47,21 @@
     }
     else if ([node isKindOfClass:[FLAToyNode class]]){
         // We are colliding with another kind of object
-        
+
+        if (self.injured) return;
+
         CGFloat damage = kMinDamage + (node.physicsBody.mass/SpeedFromVector(node.physicsBody.velocity));
         self.health -= damage;
         
         [scene boat:self healthDidChange:self.health];
+        self.injured = YES;
 
         self.colorBlendFactor = 1.0;
-        double delayInSeconds = 0.3;
+        double delayInSeconds = 1;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             self.colorBlendFactor = 0;
+            self.injured = NO;
         });
     }
 }

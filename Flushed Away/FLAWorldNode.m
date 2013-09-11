@@ -90,9 +90,9 @@
             [self spawnToy];
         }
         self.lastTimeToySpawned = currentTime;
-        self.toySpawnInterval-=0.10;
-        if (self.toySpawnInterval < 0.1) {
-            self.toySpawnInterval = 0.1;
+        self.toySpawnInterval-=0.20;
+        if (self.toySpawnInterval < 0.3) {
+            self.toySpawnInterval = 0.3;
         }
     }
 
@@ -102,7 +102,7 @@
 - (void)spawnToy
 {
     FLAToyNode *toy = [FLAToyNode randomToyNode];
-    const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height);
+    const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height) * 0.6;
     const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
 
     CGPoint orbitingCenter = self.drain.position;
@@ -115,6 +115,8 @@
 
     toy.name = @"toy";
     [self addChild:toy];
+
+    NSLog(@"toy spawned");
 }
 
 
