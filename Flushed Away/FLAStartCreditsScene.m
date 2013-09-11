@@ -9,6 +9,10 @@
 #import "FLAStartCreditsScene.h"
 #import "FLABackStoryScene.h"
 
+@interface FLAStartCreditsScene ()
+@property (nonatomic, strong) NSTimer *timer;
+@end
+
 @implementation FLAStartCreditsScene
 
 - (instancetype)initWithSize:(CGSize)size
@@ -25,19 +29,21 @@
         label.position = CGPointMake(0, 0);
         label.alpha = 1;
         [self addChild:label];
-        
-        [self performSelector:@selector(goToNextScene) withObject:self afterDelay:2.0];
+
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(goToNextScene) userInfo:nil repeats:NO];
     }
     return self;
 }
 
 - (void)goToNextScene
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(goToNextScene) object:self];
+    [self.timer invalidate];
+    self.timer = nil;
+
     SKScene *scene = [FLABackStoryScene sceneWithSize:self.view.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
-    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:2];
+    SKTransition *transition = [SKTransition fadeWithDuration:1];
     
     // Present the scene.
     [self.view presentScene:scene transition:transition];

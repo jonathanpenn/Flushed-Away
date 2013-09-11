@@ -9,6 +9,7 @@
 #import "FLAPlayScene.h"
 #import "FLAWorldNode.h"
 #import "FLASoundQueue.h"
+#import "FLAEndGameNode.h"
 
 @interface FLAPlayScene ()
 <SKPhysicsContactDelegate>
@@ -49,13 +50,14 @@
 {
     [self.world update:currentTime];
     
-    if (!self.startTimeInterval) {
+    if (self.startTimeInterval == 0) {
         self.startTimeInterval = currentTime;
     }
-    
-    NSTimeInterval newTime = currentTime - self.startTimeInterval;
-    
-    self.timeLabelNode.text = [NSString stringWithFormat:@"Time Elapsed: %0.1fs", newTime];
+
+    if (!self.gameEnded) {
+        NSTimeInterval newTime = currentTime - self.startTimeInterval;
+        self.timeLabelNode.text = [NSString stringWithFormat:@"Time Elapsed: %0.1fs", newTime];
+    }
 }
 
 - (void)resetScene
@@ -64,6 +66,7 @@
     [self removeAllActions];
 
     self.gameEnded = NO;
+    self.startTimeInterval = 0;
 
     self.world = [FLAWorldNode node];
     [self addChild:self.world];
@@ -156,6 +159,8 @@
     self.paused = YES;
     self.world.alpha = 0.5;
     self.gameEnded = YES;
+    [self.soundQueue stopAndClear];
+    [self addChild:[FLAEndGameNode node]];
 }
 
 
