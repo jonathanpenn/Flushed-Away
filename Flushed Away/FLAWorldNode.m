@@ -48,12 +48,13 @@
     [self.swirl2 runAction:[SKAction repeatActionForever:spin2]];
 
     self.drain = [FLADrainNode node];
+    self.drain.position = CGPointZero;
     [self addChild:self.drain];
 
     self.boat = [FLABoatNode node];
     CGPoint orbitingCenter = self.drain.position;
-    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y - 100);
-    self.boat.position = RotatePointAroundPoint(startPoint, orbitingCenter, 0);
+    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y + 100);
+    self.boat.position = startPoint;
     CGFloat force = 100;
     CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + 0);
     self.boat.physicsBody.velocity = vector;
@@ -63,6 +64,8 @@
 
 - (void)update:(NSTimeInterval)currentTime
 {
+    if (self.paused) return;
+
     if (self.touching) {
         [self.boat moveTowards:self.touchPoint withTimeInterval:0.6];
     } else {
@@ -78,7 +81,9 @@
     }];
 
     if (currentTime > self.lastTimeToySpawned + 3) {
-        [self spawnToy];
+        if (self.lastTimeToySpawned != 0) {
+            [self spawnToy];
+        }
         self.lastTimeToySpawned = currentTime;
     }
 }
@@ -95,6 +100,7 @@
     CGFloat force = 150;
     CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + angle);
     toy.physicsBody.velocity = vector;
+    toy.physicsBody.angularVelocity = arc4random_uniform(20) / 10.f;
 
     toy.name = @"toy";
     [self addChild:toy];

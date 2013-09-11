@@ -32,7 +32,10 @@
         // Setting this anchor point makes it easier since all our calculations
         // will be around the center
         self.anchorPoint = CGPointMake (0.5, 0.5);
-        
+
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
+        self.physicsWorld.contactDelegate = self;
+
         [self resetScene];
 
         [self startSounds];
@@ -50,7 +53,7 @@
     
     NSTimeInterval newTime = currentTime - self.startTimeInterval;
     
-    self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1f", newTime];
+    self.timeLabelNode.text = [NSString stringWithFormat:@"Time Elapsed: %0.1fs", newTime];
 }
 
 - (void)resetScene
@@ -62,9 +65,6 @@
     [self addChild:self.world];
     [self.world setup];
 
-    self.physicsWorld.gravity = CGVectorMake(0, 0);
-    self.physicsWorld.contactDelegate = self;
-    
     self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     self.timeLabelNode.fontSize = 16;
     self.timeLabelNode.fontColor = [SKColor yellowColor];
