@@ -18,8 +18,19 @@
         CGRect rect = CGRectMake(0-radius, 0-radius, radius*2, radius*2);
         self.path = [UIBezierPath bezierPathWithOvalInRect:rect].CGPath;
         self.fillColor = [SKColor whiteColor];
+
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
+        self.physicsBody.mass = 10000;
     }
     return self;
+}
+
+- (void)applyForceToNode:(SKNode *)node
+{
+    CGVector v = GravityVectorFromPointToPointWithMass(node.position,
+                                                       self.position,
+                                                       self.physicsBody.mass);
+    [node.physicsBody applyForce:v];
 }
 
 @end

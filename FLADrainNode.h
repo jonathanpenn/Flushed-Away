@@ -10,4 +10,6 @@
 
 @interface FLADrainNode : SKShapeNode
 
+- (void)applyForceToNode:(SKNode *)node;
+
 @end

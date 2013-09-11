@@ -17,6 +17,7 @@
         const CGFloat radius = 15;
         self.size = CGSizeMake(radius*2, radius*2);
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
+        self.physicsBody.mass = 50;
     }
     return self;
 }

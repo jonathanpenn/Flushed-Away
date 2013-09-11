@@ -35,7 +35,7 @@
 
 - (void)update:(NSTimeInterval)currentTime
 {
-
+    [self.world update:currentTime];
 }
 
 @end

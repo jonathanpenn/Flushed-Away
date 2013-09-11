@@ -14,8 +14,9 @@
 @interface FLAWorldNode ()
 
 @property (nonatomic, strong) FLABoatNode *boat;
-@property (nonatomic, strong) FLAToyNode *duck;
 @property (nonatomic, strong) FLADrainNode *drain;
+
+@property (nonatomic, strong) NSMutableSet *toys;
 
 @end
 
@@ -30,17 +31,14 @@
 
         self.boat = [FLABoatNode node];
         [self addChild:self.boat];
-        self.boat.physicsBody.angularVelocity = 0.3;
-        
-        self.duck = [FLAToyNode node];
-        [self addChild:self.duck];
-        self.duck.physicsBody.angularVelocity = 0.5;
+        self.boat.position = CGPointMake(50, 80);
     }
     return self;
 }
 
 - (void)update:(NSTimeInterval)currentTime
 {
+    [self.drain applyForceToNode:self.boat];
 }
 
 @end
