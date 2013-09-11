@@ -29,6 +29,14 @@
 		ABFD135D17DFFF9200E657DB /* FLABoatNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135C17DFFF9200E657DB /* FLABoatNode.m */; };
 		ABFD136017DFFFA000E657DB /* FLADrainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135F17DFFFA000E657DB /* FLADrainNode.m */; };
 		ABFD136317E0004F00E657DB /* FLAToyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD136217E0004F00E657DB /* FLAToyNode.m */; };
+		D9ECCFD017E0037800BB3E95 /* toy-bear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFC817E0037800BB3E95 /* toy-bear@2x.png */; };
+		D9ECCFD117E0037800BB3E95 /* toy-bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFC917E0037800BB3E95 /* toy-bike@2x.png */; };
+		D9ECCFD217E0037800BB3E95 /* toy-car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCA17E0037800BB3E95 /* toy-car@2x.png */; };
+		D9ECCFD317E0037800BB3E95 /* toy-duck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCB17E0037800BB3E95 /* toy-duck@2x.png */; };
+		D9ECCFD417E0037800BB3E95 /* toy-horse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCC17E0037800BB3E95 /* toy-horse@2x.png */; };
+		D9ECCFD517E0037800BB3E95 /* toy-plane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCD17E0037800BB3E95 /* toy-plane@2x.png */; };
+		D9ECCFD617E0037800BB3E95 /* toy-scooter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCE17E0037800BB3E95 /* toy-scooter@2x.png */; };
+		D9ECCFD717E0037800BB3E95 /* toy-soldier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCF17E0037800BB3E95 /* toy-soldier@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +82,14 @@
 		ABFD135F17DFFFA000E657DB /* FLADrainNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLADrainNode.m; path = ../FLADrainNode.m; sourceTree = "<group>"; };
 		ABFD136117E0004F00E657DB /* FLAToyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAToyNode.h; sourceTree = "<group>"; };
 		ABFD136217E0004F00E657DB /* FLAToyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAToyNode.m; sourceTree = "<group>"; };
+		D9ECCFC817E0037800BB3E95 /* toy-bear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-bear@2x.png"; path = "Resources/toy-bear@2x.png"; sourceTree = "<group>"; };
+		D9ECCFC917E0037800BB3E95 /* toy-bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-bike@2x.png"; path = "Resources/toy-bike@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCA17E0037800BB3E95 /* toy-car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-car@2x.png"; path = "Resources/toy-car@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCB17E0037800BB3E95 /* toy-duck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-duck@2x.png"; path = "Resources/toy-duck@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCC17E0037800BB3E95 /* toy-horse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-horse@2x.png"; path = "Resources/toy-horse@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCD17E0037800BB3E95 /* toy-plane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-plane@2x.png"; path = "Resources/toy-plane@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCE17E0037800BB3E95 /* toy-scooter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-scooter@2x.png"; path = "Resources/toy-scooter@2x.png"; sourceTree = "<group>"; };
+		D9ECCFCF17E0037800BB3E95 /* toy-soldier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toy-soldier@2x.png"; path = "Resources/toy-soldier@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +193,7 @@
 		ABD928EB17DFFE9000AE5F64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D9ECCFC717E0030900BB3E95 /* Images */,
 				ABD928EC17DFFE9000AE5F64 /* Flushed Away-Info.plist */,
 				ABD928ED17DFFE9000AE5F64 /* InfoPlist.strings */,
 				ABD928F017DFFE9000AE5F64 /* main.m */,
@@ -201,6 +218,21 @@
 				ABD9291417DFFE9100AE5F64 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9ECCFC717E0030900BB3E95 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D9ECCFC817E0037800BB3E95 /* toy-bear@2x.png */,
+				D9ECCFC917E0037800BB3E95 /* toy-bike@2x.png */,
+				D9ECCFCA17E0037800BB3E95 /* toy-car@2x.png */,
+				D9ECCFCB17E0037800BB3E95 /* toy-duck@2x.png */,
+				D9ECCFCC17E0037800BB3E95 /* toy-horse@2x.png */,
+				D9ECCFCD17E0037800BB3E95 /* toy-plane@2x.png */,
+				D9ECCFCE17E0037800BB3E95 /* toy-scooter@2x.png */,
+				D9ECCFCF17E0037800BB3E95 /* toy-soldier@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,10 +313,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD9290317DFFE9100AE5F64 /* Spaceship.png in Resources */,
+				D9ECCFD417E0037800BB3E95 /* toy-horse@2x.png in Resources */,
 				ABD9290517DFFE9100AE5F64 /* Images.xcassets in Resources */,
+				D9ECCFD217E0037800BB3E95 /* toy-car@2x.png in Resources */,
+				D9ECCFD117E0037800BB3E95 /* toy-bike@2x.png in Resources */,
+				D9ECCFD517E0037800BB3E95 /* toy-plane@2x.png in Resources */,
 				ABD928FB17DFFE9100AE5F64 /* Main_iPad.storyboard in Resources */,
 				ABD928F817DFFE9100AE5F64 /* Main_iPhone.storyboard in Resources */,
 				ABD928EF17DFFE9000AE5F64 /* InfoPlist.strings in Resources */,
+				D9ECCFD717E0037800BB3E95 /* toy-soldier@2x.png in Resources */,
+				D9ECCFD317E0037800BB3E95 /* toy-duck@2x.png in Resources */,
+				D9ECCFD017E0037800BB3E95 /* toy-bear@2x.png in Resources */,
+				D9ECCFD617E0037800BB3E95 /* toy-scooter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
