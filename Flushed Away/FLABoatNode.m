@@ -10,4 +10,15 @@
 
 @implementation FLABoatNode
 
+- (instancetype)init
+{
+    self = [super initWithImageNamed:@"Spaceship"];
+    if (self) {
+        const CGFloat radius = 15;
+        self.size = CGSizeMake(radius*2, radius*2);
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
+    }
+    return self;
+}
+
 @end

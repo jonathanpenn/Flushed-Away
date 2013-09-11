@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface FLABoatNode : SKNode
+@interface FLABoatNode : SKSpriteNode
 
 @end

@@ -10,4 +10,6 @@
 
 @interface FLAWorldNode : SKNode
 
+- (void)update:(NSTimeInterval)currentTime;
+
 @end
