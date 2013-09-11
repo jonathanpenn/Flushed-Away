@@ -80,7 +80,7 @@
     toy.position = CGPointMake(radius * cos(angle), radius * sin(angle));
     toy.name = @"toy";
     toy.physicsBody.velocity = VectorFromSpeedAngleAndPosition(100, angle, toy.position);//TangentVelocityVectorFromPosition(toy.position, angle, radius);
-    NSLog(@"Toy %@", toy);
+//    NSLog(@"Toy %@", toy);
     [self addChild:toy];
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "FLABackStoryScene.h"
-#import "FLAPlayScene.h"
+#import "FLAHelpScreen.h"
 
 @implementation FLABackStoryScene
 
@@ -29,10 +29,10 @@
         double delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
+            SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];
             scene.scaleMode = SKSceneScaleModeAspectFill;
 
-            SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:2];
+            SKTransition *transition = [SKTransition fadeWithColor:[SKColor blackColor] duration:2];
 
             // Present the scene.
             [self.view presentScene:scene transition:transition];
