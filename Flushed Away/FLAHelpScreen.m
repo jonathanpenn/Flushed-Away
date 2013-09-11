@@ -53,22 +53,21 @@
         tapLabel.alpha = 1;
         [self addChild:tapLabel];
 
+        [[FLASoundQueue sharedSoundQueue] fadeOutCompletion:nil];
     }
     return self;
 }
 
 - (void)play
 {
-    [[FLASoundQueue sharedSoundQueue] fadeOutCompletion:^{
-        SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
+    SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
 
-        SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:1];
-        transition.pausesIncomingScene = YES;
+    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:1];
+    transition.pausesIncomingScene = YES;
 
-        // Present the scene.
-        [self.view presentScene:scene transition:transition];
-    }];
+    // Present the scene.
+    [self.view presentScene:scene transition:transition];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

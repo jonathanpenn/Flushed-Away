@@ -20,9 +20,9 @@
 {
     [super viewDidLoad];
 
-    self.skView.showsFPS = YES;
-    self.skView.showsNodeCount = YES;
-    self.skView.showsDrawCount = YES;
+    self.skView.showsFPS = NO;
+    self.skView.showsNodeCount = NO;
+    self.skView.showsDrawCount = NO;
 
     SKScene *blankScene = [SKScene sceneWithSize:self.skView.bounds.size];
     blankScene.backgroundColor = [SKColor blackColor];

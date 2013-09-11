@@ -51,6 +51,7 @@
 
 //    scrollView.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:backstoryLabel];
+    scrollView.userInteractionEnabled = NO;
     
     [view addSubview:scrollView];
     
@@ -71,8 +72,10 @@
 
 - (void)goToNextScene
 {
-    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentOffset.x,self.scrollView.contentOffset.y, 1, 1)
-                                animated:NO];
+    [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.scrollView.contentOffset = self.scrollView.contentOffset;
+    } completion:^(BOOL finished) {
+    }];
     [self.scrollView removeFromSuperview];
     
     SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];

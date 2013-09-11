@@ -24,9 +24,9 @@
 {
     self = [super initWithImageNamed:@"boat"];
     if (self) {
-        const CGFloat radius = 17;
-        self.size = CGSizeMake(radius*2, radius*2);
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
+        const CGFloat maxWidth = 12;
+        self.size = CGSizeMake(maxWidth, maxWidth / self.texture.size.width * self.texture.size.height);
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody.mass = 100;
         self.physicsBody.categoryBitMask = FLABodyCategoryBoat;
         self.physicsBody.contactTestBitMask = FLABodyCategoryDrain;
@@ -68,6 +68,8 @@
 
 - (void)moveTowards:(CGPoint)position withTimeInterval:(NSTimeInterval)timeInterval
 {
+    if (self.injured) return;
+
     self.physicsBody.velocity = CGVectorMake(0, 0);
     CGPoint curPosition = self.position;
     CGFloat dx = position.x - curPosition.x;
@@ -77,8 +79,9 @@
     CGFloat ang = PolarAdjust(AngleBetweenPoints(position, curPosition));
     self.zRotation = ang;
 
-    self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*(300 * timeInterval),
-                                          cosf(ang)*dt*(300 * timeInterval));
+    self.physicsBody.angularVelocity = 0;
+    self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*60,
+                                          cosf(ang)*dt*60);
 
     CGFloat distRemaining = hypotf(dx, dy);
     if (distRemaining < dt) {

@@ -53,7 +53,7 @@
 
     if (!self.gameEnded) {
         NSTimeInterval newTime = currentTime - self.startTimeInterval;
-        self.timeLabelNode.text = [NSString stringWithFormat:@"Time Elapsed: %0.1fs", newTime];
+        self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1fs", newTime];
     }
 }
 
@@ -70,8 +70,8 @@
     [self addChild:self.world];
     [self.world setup];
 
-    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"AvenirNext-Regular"];
-    self.timeLabelNode.fontSize = 14;
+    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"AvenirNext-Bold"];
+    self.timeLabelNode.fontSize = 12;
     self.timeLabelNode.fontColor = [SKColor yellowColor];
     self.timeLabelNode.text = @"0.0";
     self.timeLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
@@ -90,7 +90,8 @@
 {
     self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     self.progressView.progress = 1.0;
-    
+
+    self.progressView.tintColor = [UIColor redColor];
     self.progressView.frame = CGRectMake(10, self.size.height - 20, 100, 10);
     [self.view addSubview:self.progressView];
 }

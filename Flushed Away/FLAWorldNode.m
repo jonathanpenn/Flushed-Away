@@ -52,6 +52,7 @@
 
     self.drain = [FLADrainNode node];
     self.drain.position = CGPointZero;
+    self.drain.name = @"drain";
     [self addChild:self.drain];
 
     self.boat = [FLABoatNode node];
