@@ -77,8 +77,6 @@
         }
     }
 
-    
-
     [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
         if (toy.physicsBody.affectedByGravity) {
             [self.drain applyForceToNode:toy];

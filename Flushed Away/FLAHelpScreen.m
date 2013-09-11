@@ -25,7 +25,7 @@
         label.fontSize = 20;
         label.fontColor = [SKColor whiteColor];
         label.text = @"How To Play";
-        label.position = CGPointMake(0, 20);
+        label.position = CGPointMake(0, 30);
         label.alpha = 1;
         [self addChild:label];
         
@@ -33,7 +33,7 @@
         instructionLabel.fontSize = 18;
         instructionLabel.fontColor = [SKColor whiteColor];
         instructionLabel.text = @"Drag your finger on the screen to move the boat.";
-        instructionLabel.position = CGPointMake(0, -15);
+        instructionLabel.position = CGPointMake(0, -5);
         instructionLabel.alpha = 1;
         [self addChild:instructionLabel];
         
