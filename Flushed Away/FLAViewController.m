@@ -34,7 +34,7 @@
 - (void)showStartCreditsScene
 {
     // Create and configure the scene.
-    SKScene *scene = [FLAPlayScene sceneWithSize:self.skView.bounds.size];
+    SKScene *scene = [FLAStartCreditsScene sceneWithSize:self.skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
 
     // Present the scene.

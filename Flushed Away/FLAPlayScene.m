@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) FLAWorldNode *world;
 @property (nonatomic, strong) FLASoundQueue *soundQueue;
+@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) SKLabelNode *timeLabelNode;
 
 @end
 
@@ -38,6 +40,8 @@
 - (void)update:(NSTimeInterval)currentTime
 {
     [self.world update:currentTime];
+    
+    self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1f", currentTime];
 }
 
 - (void)resetScene
@@ -51,6 +55,21 @@
 
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;
+    
+    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    self.progressView.progress = 1.0;
+    
+    self.progressView.frame = CGRectMake(10, self.size.height - 20, 100, 10);
+    [self.view addSubview:self.progressView];
+    
+    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    self.timeLabelNode.fontSize = 20;
+    self.timeLabelNode.fontColor = [SKColor yellowColor];
+    self.timeLabelNode.text = @"0.0";
+    self.timeLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    self.timeLabelNode.position = CGPointMake(-200, 150);
+    self.timeLabelNode.alpha = 1;
+    [self addChild:self.timeLabelNode];
 }
 
 
@@ -101,6 +120,20 @@
         [self.soundQueue queueSoundFileNamed:@"action_b_music_loop" loop:YES];
         [self.soundQueue start];
     });
+}
+
+- (void)boatHealthDidChange:(CGFloat)health
+{
+    self.progressView.progress = health / 100;
+    
+    if (self.progressView.progress <= 0) {
+        [self endGame];
+    }
+}
+
+- (void)endGame
+{
+    
 }
 
 @end

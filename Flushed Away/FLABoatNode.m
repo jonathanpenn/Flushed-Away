@@ -9,6 +9,10 @@
 #import "FLAPlayScene.h"
 #import "FLABoatNode.h"
 #import "FLADrainNode.h"
+#import "FLAToyNode.h"
+
+#define kStartHealth    100.0f
+#define kMinDamage      10
 
 @implementation FLABoatNode
 
@@ -24,6 +28,7 @@
         self.physicsBody.contactTestBitMask = FLABodyCategoryDrain;
         self.physicsBody.collisionBitMask = FLABodyCategoryToy;
         self.physicsBody.linearDamping = 0.2;
+        self.health = kStartHealth;
     }
     return self;
 }
@@ -34,6 +39,14 @@
 
     if ([node isKindOfClass:[FLADrainNode class]]) {
         [scene boat:self sankDownDrain:(FLADrainNode *)node];
+    }
+    else if ([node isKindOfClass:[FLAToyNode class]]){
+        // We are colliding with another kind of object
+        
+        CGFloat damage = kMinDamage + (node.physicsBody.mass/SpeedFromVector(node.physicsBody.velocity));
+        self.health -= damage;
+        
+        [scene boatHealthDidChange:self.health];
     }
 }
 

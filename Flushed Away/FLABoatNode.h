@@ -11,4 +11,6 @@
 @interface FLABoatNode : SKSpriteNode
 <FLACollisionNode>
 
+@property (assign, nonatomic) CGFloat health;
+
 @end
