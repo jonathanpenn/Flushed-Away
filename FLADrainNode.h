@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface FLADrainNode : SKNode
+@interface FLADrainNode : SKShapeNode
 
 @end
