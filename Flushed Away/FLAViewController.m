@@ -25,12 +25,6 @@
     self.skView.showsDrawCount = YES;
 
     [self showStartCreditsScene];
-
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self showGamePlayScene];
-    });
 }
 
 - (void)showStartCreditsScene
@@ -41,18 +35,6 @@
 
     // Present the scene.
     [self.skView presentScene:scene];
-}
-
-- (void)showGamePlayScene
-{
-    // Create and configure the scene.
-    SKScene *scene = [FLAPlayScene sceneWithSize:self.skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-
-    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:2];
-
-    // Present the scene.
-    [self.skView presentScene:scene transition:transition];
 }
 
 - (BOOL)shouldAutorotate
