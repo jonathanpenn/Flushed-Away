@@ -20,7 +20,10 @@
         self.fillColor = [SKColor whiteColor];
 
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
-        self.physicsBody.mass = 10000;
+        self.physicsBody.mass = 100000;
+        self.physicsBody.collisionBitMask = 0;
+        self.physicsBody.contactTestBitMask = 0;
+        self.physicsBody.resting = YES;
     }
     return self;
 }
