@@ -21,6 +21,7 @@
 
 @property (nonatomic) NSTimeInterval lastTimeInterval;
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
+@property (nonatomic) NSTimeInterval toySpawnInterval;
 
 @property (nonatomic) BOOL touching;
 @property (nonatomic) CGPoint touchPoint;
@@ -31,6 +32,7 @@
 
 - (void)setup
 {
+    self.toySpawnInterval = 4;
     CGFloat max = MAX(self.scene.size.width, self.scene.size.height);
 
     self.swirl1 = [FLASwirlNode node];
@@ -75,17 +77,23 @@
         }
     }
 
+    
+
     [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
         if (toy.physicsBody.affectedByGravity) {
             [self.drain applyForceToNode:toy];
         }
     }];
 
-    if (currentTime > self.lastTimeToySpawned + 3) {
+    if (currentTime > self.lastTimeToySpawned + self.toySpawnInterval) {
         if (self.lastTimeToySpawned != 0) {
             [self spawnToy];
         }
         self.lastTimeToySpawned = currentTime;
+        self.toySpawnInterval-=0.10;
+        if (self.toySpawnInterval < 0.3) {
+            self.toySpawnInterval = 0.3;
+        }
     }
 
     self.lastTimeInterval = currentTime;
@@ -94,13 +102,13 @@
 - (void)spawnToy
 {
     FLAToyNode *toy = [FLAToyNode randomToyNode];
-    const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height)/2;
+    const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height);
     const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
 
     CGPoint orbitingCenter = self.drain.position;
     CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y - radius);
     toy.position = RotatePointAroundPoint(startPoint, orbitingCenter, angle);
-    CGFloat force = 150;
+    CGFloat force = 170;
     CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + angle);
     toy.physicsBody.velocity = vector;
     toy.physicsBody.angularVelocity = arc4random_uniform(20) / 10.f;
@@ -125,12 +133,13 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.boat.physicsBody.velocity = self.boat.lastDraggedVector;
     self.touching = NO;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.touching = NO;
+    [self touchesEnded:touches withEvent:event];
 }
 
 @end

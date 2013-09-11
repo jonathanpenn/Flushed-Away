@@ -22,15 +22,15 @@
         self.backgroundColor = [SKColor blackColor];
         self.anchorPoint = CGPointMake(0.5, 0.5);
 
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        label.fontSize = 20;
+        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+        label.fontSize = 23;
         label.fontColor = [SKColor whiteColor];
         label.text = @"Flushed Away";
         label.position = CGPointMake(0, 0);
         label.alpha = 1;
         [self addChild:label];
 
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(goToNextScene) userInfo:nil repeats:NO];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(goToNextScene) userInfo:nil repeats:NO];
     }
     return self;
 }

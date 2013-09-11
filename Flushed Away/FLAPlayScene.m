@@ -40,8 +40,6 @@
         self.physicsWorld.contactDelegate = self;
 
         [self resetScene];
-
-        [self startSounds];
     }
     return self;
 }
@@ -72,16 +70,20 @@
     [self addChild:self.world];
     [self.world setup];
 
-    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-    self.timeLabelNode.fontSize = 16;
+    self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"AvenirNext-Regular"];
+    self.timeLabelNode.fontSize = 14;
     self.timeLabelNode.fontColor = [SKColor yellowColor];
     self.timeLabelNode.text = @"0.0";
     self.timeLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    self.timeLabelNode.position = CGPointMake(-220, 120);
+    self.timeLabelNode.position = CGPointMake(0-self.size.width/2+10, self.size.height/2 - 40);
     self.timeLabelNode.alpha = 1;
     [self addChild:self.timeLabelNode];
 
+    self.progressView.progress = 1.0;
+
     self.paused = NO;
+
+    [self startSounds];
 }
 
 - (void)didMoveToView:(SKView *)view
@@ -136,6 +138,7 @@
     double delayInSeconds = 4.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (self.gameEnded) return;
         self.soundQueue = [[FLASoundQueue alloc] init];
         [self.soundQueue queueSoundFileNamed:@"action_a_music" loop:NO];
         [self.soundQueue queueSoundFileNamed:@"action_b_music_loop" loop:YES];
@@ -156,10 +159,17 @@
 
 - (void)endGame
 {
-    self.paused = YES;
-    self.world.alpha = 0.5;
+    if (self.gameEnded) return;
+
     self.gameEnded = YES;
+
+    SKAction *flush = [SKAction playSoundFileNamed:@"toilet_flush_fx.aif" waitForCompletion:NO];
+    [self runAction:flush];
+
+    [self.world runAction:[SKAction fadeAlphaTo:0.3 duration:1]];
+
     [self.soundQueue stopAndClear];
+
     [self addChild:[FLAEndGameNode node]];
 }
 

@@ -61,7 +61,7 @@
     SKScene *scene = [FLAPlayScene sceneWithSize:self.view.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
-    SKTransition *transition = [SKTransition fadeWithColor:[SKColor colorWithRed:16/255.0f green:45/255.0f blue:72/255.0f alpha:1] duration:2];
+    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:1];
     transition.pausesIncomingScene = YES;
     
     // Present the scene.
