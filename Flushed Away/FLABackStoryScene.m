@@ -9,6 +9,12 @@
 #import "FLABackStoryScene.h"
 #import "FLAHelpScreen.h"
 
+@interface FLABackStoryScene ()
+
+@property (strong, nonatomic) UILabel* backstoryLabel;
+
+@end
+
 @implementation FLABackStoryScene
 
 - (instancetype)initWithSize:(CGSize)size
@@ -41,8 +47,10 @@
     
     [view addSubview:backstoryLabel];
     
+    self.backstoryLabel = backstoryLabel;
+    
     [UIView animateWithDuration:17.0 animations:^{
-        backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height, labelFrame.size.width, labelFrame.size.height);
+        self.backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height, labelFrame.size.width, labelFrame.size.height);
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
@@ -50,10 +58,16 @@
 
 - (void)goToNextScene
 {
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{self.backstoryLabel.alpha = 0;}
+                     completion:^(BOOL finished){}
+     ];
     SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
-    SKTransition *transition = [SKTransition fadeWithColor:[SKColor blackColor] duration:2];
+    SKTransition *transition = [SKTransition fadeWithColor:[SKColor blackColor] duration:1.5];
     
     // Present the scene.
     [self.view presentScene:scene transition:transition];
