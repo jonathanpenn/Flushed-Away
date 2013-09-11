@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Piglettens, Ltd. All rights reserved.
 //
 
-#import "FLAMyScene.h"
+#import "FLAPlayScene.h"
 
-@implementation FLAMyScene
+@implementation FLAPlayScene
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {

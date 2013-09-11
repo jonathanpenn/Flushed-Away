@@ -7,7 +7,7 @@
 //
 
 #import "FLAViewController.h"
-#import "FLAMyScene.h"
+#import "FLAPlayScene.h"
 
 @implementation FLAViewController
 
@@ -21,7 +21,7 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [FLAMyScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [FLAPlayScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

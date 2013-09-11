@@ -17,7 +17,7 @@
 		ABD928F817DFFE9100AE5F64 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD928F617DFFE9100AE5F64 /* Main_iPhone.storyboard */; };
 		ABD928FB17DFFE9100AE5F64 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD928F917DFFE9100AE5F64 /* Main_iPad.storyboard */; };
 		ABD928FE17DFFE9100AE5F64 /* FLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD928FD17DFFE9100AE5F64 /* FLAViewController.m */; };
-		ABD9290117DFFE9100AE5F64 /* FLAMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD9290017DFFE9100AE5F64 /* FLAMyScene.m */; };
+		ABD9290117DFFE9100AE5F64 /* FLAPlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD9290017DFFE9100AE5F64 /* FLAPlayScene.m */; };
 		ABD9290317DFFE9100AE5F64 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD9290217DFFE9100AE5F64 /* Spaceship.png */; };
 		ABD9290517DFFE9100AE5F64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABD9290417DFFE9100AE5F64 /* Images.xcassets */; };
 		ABD9290C17DFFE9100AE5F64 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD9290B17DFFE9100AE5F64 /* XCTest.framework */; };
@@ -25,6 +25,10 @@
 		ABD9290E17DFFE9100AE5F64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E617DFFE9000AE5F64 /* UIKit.framework */; };
 		ABD9291617DFFE9100AE5F64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABD9291417DFFE9100AE5F64 /* InfoPlist.strings */; };
 		ABD9291817DFFE9100AE5F64 /* Flushed_AwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD9291717DFFE9100AE5F64 /* Flushed_AwayTests.m */; };
+		ABFD135A17DFFF7600E657DB /* FLAWorldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135917DFFF7600E657DB /* FLAWorldNode.m */; };
+		ABFD135D17DFFF9200E657DB /* FLABoatNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135C17DFFF9200E657DB /* FLABoatNode.m */; };
+		ABFD136017DFFFA000E657DB /* FLADrainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135F17DFFFA000E657DB /* FLADrainNode.m */; };
+		ABFD136317E0004F00E657DB /* FLAToyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD136217E0004F00E657DB /* FLAToyNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +57,8 @@
 		ABD928FA17DFFE9100AE5F64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		ABD928FC17DFFE9100AE5F64 /* FLAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLAViewController.h; sourceTree = "<group>"; };
 		ABD928FD17DFFE9100AE5F64 /* FLAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLAViewController.m; sourceTree = "<group>"; };
-		ABD928FF17DFFE9100AE5F64 /* FLAMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLAMyScene.h; sourceTree = "<group>"; };
-		ABD9290017DFFE9100AE5F64 /* FLAMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLAMyScene.m; sourceTree = "<group>"; };
+		ABD928FF17DFFE9100AE5F64 /* FLAPlayScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLAPlayScene.h; sourceTree = "<group>"; };
+		ABD9290017DFFE9100AE5F64 /* FLAPlayScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLAPlayScene.m; sourceTree = "<group>"; };
 		ABD9290217DFFE9100AE5F64 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		ABD9290417DFFE9100AE5F64 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABD9290A17DFFE9100AE5F64 /* Flushed AwayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flushed AwayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +66,14 @@
 		ABD9291317DFFE9100AE5F64 /* Flushed AwayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flushed AwayTests-Info.plist"; sourceTree = "<group>"; };
 		ABD9291517DFFE9100AE5F64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ABD9291717DFFE9100AE5F64 /* Flushed_AwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flushed_AwayTests.m; sourceTree = "<group>"; };
+		ABFD135817DFFF7600E657DB /* FLAWorldNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAWorldNode.h; sourceTree = "<group>"; };
+		ABFD135917DFFF7600E657DB /* FLAWorldNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAWorldNode.m; sourceTree = "<group>"; };
+		ABFD135B17DFFF9200E657DB /* FLABoatNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLABoatNode.h; sourceTree = "<group>"; };
+		ABFD135C17DFFF9200E657DB /* FLABoatNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLABoatNode.m; sourceTree = "<group>"; };
+		ABFD135E17DFFFA000E657DB /* FLADrainNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLADrainNode.h; path = ../FLADrainNode.h; sourceTree = "<group>"; };
+		ABFD135F17DFFFA000E657DB /* FLADrainNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLADrainNode.m; path = ../FLADrainNode.m; sourceTree = "<group>"; };
+		ABFD136117E0004F00E657DB /* FLAToyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAToyNode.h; sourceTree = "<group>"; };
+		ABFD136217E0004F00E657DB /* FLAToyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAToyNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB9E12D117DFFEF100291AD7 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				ABFD135817DFFF7600E657DB /* FLAWorldNode.h */,
+				ABFD135917DFFF7600E657DB /* FLAWorldNode.m */,
+				ABFD135B17DFFF9200E657DB /* FLABoatNode.h */,
+				ABFD135C17DFFF9200E657DB /* FLABoatNode.m */,
+				ABFD135E17DFFFA000E657DB /* FLADrainNode.h */,
+				ABFD135F17DFFFA000E657DB /* FLADrainNode.m */,
+				ABFD136117E0004F00E657DB /* FLAToyNode.h */,
+				ABFD136217E0004F00E657DB /* FLAToyNode.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		AB9E12D217DFFEF900291AD7 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				ABD928FF17DFFE9100AE5F64 /* FLAPlayScene.h */,
+				ABD9290017DFFE9100AE5F64 /* FLAPlayScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		ABD928D617DFFE9000AE5F64 = {
 			isa = PBXGroup;
 			children = (
@@ -123,14 +159,14 @@
 		ABD928EA17DFFE9000AE5F64 /* Flushed Away */ = {
 			isa = PBXGroup;
 			children = (
+				AB9E12D217DFFEF900291AD7 /* Scenes */,
+				AB9E12D117DFFEF100291AD7 /* Nodes */,
 				ABD928F317DFFE9100AE5F64 /* FLAAppDelegate.h */,
 				ABD928F417DFFE9100AE5F64 /* FLAAppDelegate.m */,
 				ABD928F617DFFE9100AE5F64 /* Main_iPhone.storyboard */,
 				ABD928F917DFFE9100AE5F64 /* Main_iPad.storyboard */,
 				ABD928FC17DFFE9100AE5F64 /* FLAViewController.h */,
 				ABD928FD17DFFE9100AE5F64 /* FLAViewController.m */,
-				ABD928FF17DFFE9100AE5F64 /* FLAMyScene.h */,
-				ABD9290017DFFE9100AE5F64 /* FLAMyScene.m */,
 				ABD9290217DFFE9100AE5F64 /* Spaceship.png */,
 				ABD9290417DFFE9100AE5F64 /* Images.xcassets */,
 				ABD928EB17DFFE9000AE5F64 /* Supporting Files */,
@@ -268,9 +304,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD928F517DFFE9100AE5F64 /* FLAAppDelegate.m in Sources */,
+				ABFD136017DFFFA000E657DB /* FLADrainNode.m in Sources */,
+				ABFD135A17DFFF7600E657DB /* FLAWorldNode.m in Sources */,
 				ABD928F117DFFE9000AE5F64 /* main.m in Sources */,
-				ABD9290117DFFE9100AE5F64 /* FLAMyScene.m in Sources */,
+				ABFD136317E0004F00E657DB /* FLAToyNode.m in Sources */,
+				ABD9290117DFFE9100AE5F64 /* FLAPlayScene.m in Sources */,
 				ABD928FE17DFFE9100AE5F64 /* FLAViewController.m in Sources */,
+				ABFD135D17DFFF9200E657DB /* FLABoatNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +525,7 @@
 				ABD9291D17DFFE9100AE5F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABD9291E17DFFE9100AE5F64 /* Build configuration list for PBXNativeTarget "Flushed AwayTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +534,7 @@
 				ABD9292017DFFE9100AE5F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
