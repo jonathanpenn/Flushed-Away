@@ -15,7 +15,6 @@
 #define kMinDamage      10
 
 @interface FLABoatNode ()
-@property (nonatomic) BOOL injured;
 @end
 
 @implementation FLABoatNode
@@ -68,8 +67,6 @@
 
 - (void)moveTowards:(CGPoint)position withTimeInterval:(NSTimeInterval)timeInterval
 {
-    if (self.injured) return;
-
     self.physicsBody.velocity = CGVectorMake(0, 0);
     CGPoint curPosition = self.position;
     CGFloat dx = position.x - curPosition.x;
@@ -77,11 +74,15 @@
     CGFloat dt = 150 * timeInterval;
 
     CGFloat ang = PolarAdjust(AngleBetweenPoints(position, curPosition));
-    self.zRotation = ang;
 
-    self.physicsBody.angularVelocity = 0;
     self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*60,
                                           cosf(ang)*dt*60);
+
+    if (self.injured) {
+        return;
+    }
+    self.zRotation = ang;
+    self.physicsBody.angularVelocity = 0;
 
     CGFloat distRemaining = hypotf(dx, dy);
     if (distRemaining < dt) {
