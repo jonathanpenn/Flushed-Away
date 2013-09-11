@@ -13,4 +13,6 @@
 
 @property (assign, nonatomic) CGFloat health;
 
+- (void)moveTowards:(CGPoint)position withTimeInterval:(NSTimeInterval)timeInterval;
+
 @end

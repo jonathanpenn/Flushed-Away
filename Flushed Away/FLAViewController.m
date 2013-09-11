@@ -24,7 +24,10 @@
     self.skView.showsNodeCount = YES;
     self.skView.showsDrawCount = YES;
 
-    double delayInSeconds = 0.3;
+    SKScene *blankScene = [SKScene sceneWithSize:self.skView.bounds.size];
+    blankScene.backgroundColor = [SKColor blackColor];
+    [self.skView presentScene:blankScene];
+    double delayInSeconds = 0.1;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self showStartCreditsScene];

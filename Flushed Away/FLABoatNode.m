@@ -50,4 +50,24 @@
     }
 }
 
+- (void)moveTowards:(CGPoint)position withTimeInterval:(NSTimeInterval)timeInterval
+{
+    self.physicsBody.velocity = CGVectorMake(0, 0);
+    CGPoint curPosition = self.position;
+    CGFloat dx = position.x - curPosition.x;
+    CGFloat dy = position.y - curPosition.y;
+    CGFloat dt = 15 * timeInterval;
+
+    CGFloat ang = PolarAdjust(AngleBetweenPoints(position, curPosition));
+    self.zRotation = ang;
+
+    CGFloat distRemaining = hypotf(dx, dy);
+    if (distRemaining < dt) {
+        self.position = position;
+    } else {
+        self.position = CGPointMake(curPosition.x - sinf(ang)*dt,
+                                    curPosition.y + cosf(ang)*dt);
+    }
+}
+
 @end

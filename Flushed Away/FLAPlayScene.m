@@ -24,14 +24,18 @@
 
 @implementation FLAPlayScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size
+{
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blackColor];
 
         // Setting this anchor point makes it easier since all our calculations
         // will be around the center
         self.anchorPoint = CGPointMake (0.5, 0.5);
-        
+
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
+        self.physicsWorld.contactDelegate = self;
+
         [self resetScene];
 
         [self startSounds];
@@ -49,7 +53,7 @@
     
     NSTimeInterval newTime = currentTime - self.startTimeInterval;
     
-    self.timeLabelNode.text = [NSString stringWithFormat:@"%0.1f", newTime];
+    self.timeLabelNode.text = [NSString stringWithFormat:@"Time Elapsed: %0.1fs", newTime];
 }
 
 - (void)resetScene
@@ -61,9 +65,6 @@
     [self addChild:self.world];
     [self.world setup];
 
-    self.physicsWorld.gravity = CGVectorMake(0, 0);
-    self.physicsWorld.contactDelegate = self;
-    
     self.timeLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     self.timeLabelNode.fontSize = 16;
     self.timeLabelNode.fontColor = [SKColor yellowColor];
@@ -146,6 +147,29 @@
 {
     self.paused = YES;
     self.world.alpha = 0.5;
+}
+
+
+#pragma mark - Passing on touches to world
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesCancelled:touches withEvent:event];
 }
 
 @end

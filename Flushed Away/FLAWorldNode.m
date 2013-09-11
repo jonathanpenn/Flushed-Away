@@ -21,6 +21,9 @@
 
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
 
+@property (nonatomic) BOOL touching;
+@property (nonatomic) CGPoint touchPoint;
+
 @end
 
 @implementation FLAWorldNode
@@ -33,7 +36,7 @@
     self.swirl1.size = CGSizeMake(max, max);
     self.swirl1.alpha = 0.2;
     [self addChild:self.swirl1];
-    SKAction *spin1 = [SKAction rotateByAngle:1 duration:5];
+    SKAction *spin1 = [SKAction rotateByAngle:-2 duration:5];
     [self.swirl1 runAction:[SKAction repeatActionForever:spin1]];
 
     self.swirl2 = [FLASwirlNode node];
@@ -41,26 +44,34 @@
     self.swirl2.alpha = 0.1;
     self.swirl2.zRotation = 1;
     [self addChild:self.swirl2];
-    SKAction *spin2 = [SKAction rotateByAngle:2 duration:5];
+    SKAction *spin2 = [SKAction rotateByAngle:-3 duration:5];
     [self.swirl2 runAction:[SKAction repeatActionForever:spin2]];
 
     self.drain = [FLADrainNode node];
+    self.drain.position = CGPointZero;
     [self addChild:self.drain];
 
     self.boat = [FLABoatNode node];
     CGPoint orbitingCenter = self.drain.position;
-    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y - 100);
-    self.boat.position = RotatePointAroundPoint(startPoint, orbitingCenter, 0);
+    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y + 100);
+    self.boat.position = startPoint;
     CGFloat force = 100;
     CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + 0);
     self.boat.physicsBody.velocity = vector;
 
     [self addChild:self.boat];
 }
+
 - (void)update:(NSTimeInterval)currentTime
 {
-    if (self.boat.physicsBody.affectedByGravity) {
-        [self.drain applyForceToNode:self.boat];
+    if (self.paused) return;
+
+    if (self.touching) {
+        [self.boat moveTowards:self.touchPoint withTimeInterval:0.6];
+    } else {
+        if (self.boat.physicsBody.affectedByGravity) {
+            [self.drain applyForceToNode:self.boat];
+        }
     }
 
     [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
@@ -70,7 +81,9 @@
     }];
 
     if (currentTime > self.lastTimeToySpawned + 3) {
-        [self spawnToy];
+        if (self.lastTimeToySpawned != 0) {
+            [self spawnToy];
+        }
         self.lastTimeToySpawned = currentTime;
     }
 }
@@ -87,10 +100,34 @@
     CGFloat force = 150;
     CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + angle);
     toy.physicsBody.velocity = vector;
+    toy.physicsBody.angularVelocity = arc4random_uniform(20) / 10.f;
 
     toy.name = @"toy";
-    toy.physicsBody.velocity = VectorFromSpeedAngleAndPosition(100, angle, toy.position);//TangentVelocityVectorFromPosition(toy.position, angle, radius);
     [self addChild:toy];
+}
+
+
+#pragma mark - Touch Handling
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = YES;
+    self.touchPoint = [[touches anyObject] locationInNode:self];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touchPoint = [[touches anyObject] locationInNode:self];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = NO;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = NO;
 }
 
 @end
