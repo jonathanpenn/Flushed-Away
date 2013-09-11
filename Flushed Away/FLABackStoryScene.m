@@ -49,7 +49,6 @@
     UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake((self.size.width/2) - labelFrame.size.width/2, 0, labelFrame.size.width, view.bounds.size.height)];
     scrollView.contentSize = CGSizeMake(labelFrame.size.width, labelFrame.size.height * 4);
 
-//    scrollView.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:backstoryLabel];
     scrollView.userInteractionEnabled = NO;
     
@@ -64,7 +63,7 @@
     layer.transform = perspectiveTransform;
     
     [UIView animateWithDuration:35 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
-        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - (scrollView.bounds.size.height * 1.5));
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
