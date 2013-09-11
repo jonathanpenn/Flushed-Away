@@ -49,8 +49,8 @@
     
     self.backstoryLabel = backstoryLabel;
 
-    [UIView animateWithDuration:17.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height, labelFrame.size.width, labelFrame.size.height);
+    [UIView animateWithDuration:23.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height-100, labelFrame.size.width, labelFrame.size.height);
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
