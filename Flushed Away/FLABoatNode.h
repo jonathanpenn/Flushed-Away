@@ -9,5 +9,6 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FLABoatNode : SKSpriteNode
+<FLACollisionNode>
 
 @end

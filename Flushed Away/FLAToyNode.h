@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FLAToyNode : SKSpriteNode
+<FLACollisionNode>
 
 /** Generate a random toy node */
 

@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FLADrainNode : SKShapeNode
+<FLACollisionNode>
 
 - (void)applyForceToNode:(SKNode *)node;
 

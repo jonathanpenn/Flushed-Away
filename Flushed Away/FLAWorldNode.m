@@ -17,8 +17,6 @@
 @property (nonatomic, strong) FLABoatNode *boat;
 @property (nonatomic, strong) FLADrainNode *drain;
 
-@property (nonatomic, strong) NSMutableSet *toys;
-
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
 
 @end
@@ -29,8 +27,6 @@
 {
     self = [super init];
     if (self) {
-        self.toys = [NSMutableSet set];
-
         self.drain = [FLADrainNode node];
         [self addChild:self.drain];
 
@@ -43,11 +39,15 @@
 
 - (void)update:(NSTimeInterval)currentTime
 {
-    [self.drain applyForceToNode:self.boat];
-
-    for (SKNode *toy in self.toys) {
-        [self.drain applyForceToNode:toy];
+    if (self.boat.physicsBody.affectedByGravity) {
+//        [self.drain applyForceToNode:self.boat];
     }
+
+    [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
+        if (toy.physicsBody.affectedByGravity) {
+            [self.drain applyForceToNode:toy];
+        }
+    }];
 
     if (currentTime > self.lastTimeToySpawned + 3) {
         [self spawnToy];
@@ -61,9 +61,9 @@
     const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height)/2;
     const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
     toy.position = CGPointMake(radius * cos(angle), radius * sin(angle));
+    toy.name = @"toy";
 
     [self addChild:toy];
-    [self.toys addObject:toy];
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "FLAToyNode.h"
+#import "FLAPlayScene.h"
+#import "FLADrainNode.h"
 
 enum {
     NodeTypeBear = 0,
@@ -80,6 +82,18 @@ static NSArray* s_methodNames;
 }
 
 
+#pragma mark - Collision Handling
+
+- (void)collidedWith:(SKNode *)node
+{
+    FLAPlayScene *scene = (id)self.scene;
+
+    if ([node isKindOfClass:[FLADrainNode class]]) {
+        [scene toy:self sankDownDrain:(FLADrainNode *)node];
+    }
+}
+
+
 #pragma mark - Private
 
 + (instancetype)toyNodeWithImageNamed:(NSString*)image mass:(CGFloat)mass
@@ -89,7 +103,10 @@ static NSArray* s_methodNames;
     node.size = CGSizeMake(maxWidth, maxWidth / node.texture.size.width * node.texture.size.height);
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:MAX(node.size.height, node.size.width)/2];
     node.physicsBody.mass = mass;
-    
+    node.physicsBody.categoryBitMask = FLABodyCategoryToy;
+    node.physicsBody.contactTestBitMask = FLABodyCategoryDrain | FLABodyCategoryBoat;
+    node.physicsBody.collisionBitMask = 0;
+
     return node;
 }
 

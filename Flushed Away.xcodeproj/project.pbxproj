@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		ABA23A1E17E00958000F094F /* FLAMathSchtuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLAMathSchtuff.h; sourceTree = "<group>"; };
+		ABA23A1F17E016F6000F094F /* FLACollisions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLACollisions.h; sourceTree = "<group>"; };
 		ABD928DF17DFFE9000AE5F64 /* Flushed Away.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flushed Away.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD928E217DFFE9000AE5F64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABD928E417DFFE9000AE5F64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,6 +181,7 @@
 				AB9E12D117DFFEF100291AD7 /* Nodes */,
 				ABD928F317DFFE9100AE5F64 /* FLAAppDelegate.h */,
 				ABD928F417DFFE9100AE5F64 /* FLAAppDelegate.m */,
+				ABA23A1F17E016F6000F094F /* FLACollisions.h */,
 				ABA23A1E17E00958000F094F /* FLAMathSchtuff.h */,
 				ABD928F617DFFE9100AE5F64 /* Main_iPhone.storyboard */,
 				ABD928F917DFFE9100AE5F64 /* Main_iPad.storyboard */,
