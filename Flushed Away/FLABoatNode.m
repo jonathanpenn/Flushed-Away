@@ -46,7 +46,7 @@
         CGFloat damage = kMinDamage + (node.physicsBody.mass/SpeedFromVector(node.physicsBody.velocity));
         self.health -= damage;
         
-        [scene boatHealthDidChange:self.health];
+        [scene boat:self healthDidChange:self.health];
     }
 }
 
@@ -56,7 +56,7 @@
     CGPoint curPosition = self.position;
     CGFloat dx = position.x - curPosition.x;
     CGFloat dy = position.y - curPosition.y;
-    CGFloat dt = 15 * timeInterval;
+    CGFloat dt = 150 * timeInterval;
 
     CGFloat ang = PolarAdjust(AngleBetweenPoints(position, curPosition));
     self.zRotation = ang;

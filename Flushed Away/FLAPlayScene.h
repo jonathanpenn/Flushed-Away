@@ -17,6 +17,6 @@
 - (void)boat:(FLABoatNode *)boat sankDownDrain:(FLADrainNode *)drain;
 - (void)toy:(FLAToyNode *)toy sankDownDrain:(FLADrainNode *)drain;
 
-- (void)boatHealthDidChange:(CGFloat)health;
+- (void)boat:(FLABoatNode *)boat healthDidChange:(CGFloat)health;
 
 @end

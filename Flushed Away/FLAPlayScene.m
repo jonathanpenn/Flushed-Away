@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) SKLabelNode *timeLabelNode;
 
+@property (nonatomic) BOOL gameEnded;
+
 @property (nonatomic, assign) NSTimeInterval startTimeInterval;
 
 @end
@@ -61,6 +63,8 @@
     [self removeAllChildren];
     [self removeAllActions];
 
+    self.gameEnded = NO;
+
     self.world = [FLAWorldNode node];
     [self addChild:self.world];
     [self.world setup];
@@ -73,6 +77,8 @@
     self.timeLabelNode.position = CGPointMake(-220, 120);
     self.timeLabelNode.alpha = 1;
     [self addChild:self.timeLabelNode];
+
+    self.paused = NO;
 }
 
 - (void)didMoveToView:(SKView *)view
@@ -98,7 +104,7 @@
 - (void)boat:(FLABoatNode *)boat sankDownDrain:(FLADrainNode *)drain
 {
     [self sinkNode:(SKNode *)boat completion:^{
-        [self resetScene];
+        [self endGame];
     }];
 }
 
@@ -134,12 +140,14 @@
     });
 }
 
-- (void)boatHealthDidChange:(CGFloat)health
+- (void)boat:(FLABoatNode *)boat healthDidChange:(CGFloat)health
 {
     self.progressView.progress = health / 100;
     
     if (self.progressView.progress <= 0) {
-        [self endGame];
+        [self sinkNode:(SKNode *)boat completion:^{
+            [self endGame];
+        }];
     }
 }
 
@@ -147,6 +155,7 @@
 {
     self.paused = YES;
     self.world.alpha = 0.5;
+    self.gameEnded = YES;
 }
 
 
@@ -164,7 +173,11 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.world touchesEnded:touches withEvent:event];
+    if (self.gameEnded) {
+        [self resetScene];
+    } else {
+        [self.world touchesEnded:touches withEvent:event];
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

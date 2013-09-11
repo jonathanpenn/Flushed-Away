@@ -19,6 +19,7 @@
 @property (nonatomic, strong) FLADrainNode *drain;
 @property (nonatomic, strong) FLASwirlNode *swirl1, *swirl2;
 
+@property (nonatomic) NSTimeInterval lastTimeInterval;
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
 
 @property (nonatomic) BOOL touching;
@@ -67,7 +68,7 @@
     if (self.paused) return;
 
     if (self.touching) {
-        [self.boat moveTowards:self.touchPoint withTimeInterval:0.6];
+        [self.boat moveTowards:self.touchPoint withTimeInterval:currentTime - self.lastTimeInterval];
     } else {
         if (self.boat.physicsBody.affectedByGravity) {
             [self.drain applyForceToNode:self.boat];
@@ -86,6 +87,8 @@
         }
         self.lastTimeToySpawned = currentTime;
     }
+
+    self.lastTimeInterval = currentTime;
 }
 
 - (void)spawnToy
