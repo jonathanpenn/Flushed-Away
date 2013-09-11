@@ -99,14 +99,14 @@ static NSArray* s_methodNames;
 + (instancetype)toyNodeWithImageNamed:(NSString*)image mass:(CGFloat)mass
 {
     FLAToyNode* node = [FLAToyNode spriteNodeWithImageNamed:image];
-    const CGFloat maxWidth = 20;
+    const CGFloat maxWidth = 30;
     node.size = CGSizeMake(maxWidth, maxWidth / node.texture.size.width * node.texture.size.height);
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:MAX(node.size.height, node.size.width)/2];
     node.physicsBody.mass = mass;
     node.physicsBody.categoryBitMask = FLABodyCategoryToy;
     node.physicsBody.contactTestBitMask = FLABodyCategoryDrain | FLABodyCategoryBoat;
     node.physicsBody.collisionBitMask = FLABodyCategoryBoat | FLABodyCategoryToy;
-    node.physicsBody.linearDamping = 0.2 * mass/100;
+    node.physicsBody.linearDamping = 0.1 * mass/100;
     return node;
 }
 

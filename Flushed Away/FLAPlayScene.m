@@ -24,7 +24,8 @@
 
 @implementation FLAPlayScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size
+{
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blackColor];
 
@@ -146,6 +147,29 @@
 {
     self.paused = YES;
     self.world.alpha = 0.5;
+}
+
+
+#pragma mark - Passing on touches to world
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.world touchesCancelled:touches withEvent:event];
 }
 
 @end

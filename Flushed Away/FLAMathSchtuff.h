@@ -1,5 +1,6 @@
 #import <SpriteKit/SpriteKit.h>
 
+#define PolarAdjust(x) x + (M_PI * 0.5f)
 static inline CGFloat Deg2Rad(CGFloat deg) { return deg * M_PI/180; }
 static inline CGFloat Rad2Deg(CGFloat rad) { return rad * 180/M_PI; }
 
@@ -32,6 +33,12 @@ static inline CGVector VectorFromSpeedAndAngle(CGFloat speed, CGFloat angle) {
     CGFloat opposite = speed * sin(angle);
     CGFloat adjacent = speed * cos(angle);
     return CGVectorMake(opposite, adjacent);
+}
+
+static inline CGFloat AngleBetweenPoints(CGPoint first, CGPoint second) {
+    CGFloat deltaX = second.x - first.x;
+    CGFloat deltaY = second.y - first.y;
+    return atan2f(deltaY, deltaX);
 }
 
 static inline CGPoint RotatePointAroundPoint(CGPoint point, CGPoint origin, CGFloat angle) {

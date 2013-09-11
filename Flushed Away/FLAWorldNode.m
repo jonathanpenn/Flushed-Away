@@ -21,6 +21,9 @@
 
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
 
+@property (nonatomic) BOOL touching;
+@property (nonatomic) CGPoint touchPoint;
+
 @end
 
 @implementation FLAWorldNode
@@ -33,7 +36,7 @@
     self.swirl1.size = CGSizeMake(max, max);
     self.swirl1.alpha = 0.2;
     [self addChild:self.swirl1];
-    SKAction *spin1 = [SKAction rotateByAngle:1 duration:5];
+    SKAction *spin1 = [SKAction rotateByAngle:-2 duration:5];
     [self.swirl1 runAction:[SKAction repeatActionForever:spin1]];
 
     self.swirl2 = [FLASwirlNode node];
@@ -41,7 +44,7 @@
     self.swirl2.alpha = 0.1;
     self.swirl2.zRotation = 1;
     [self addChild:self.swirl2];
-    SKAction *spin2 = [SKAction rotateByAngle:2 duration:5];
+    SKAction *spin2 = [SKAction rotateByAngle:-3 duration:5];
     [self.swirl2 runAction:[SKAction repeatActionForever:spin2]];
 
     self.drain = [FLADrainNode node];
@@ -57,10 +60,15 @@
 
     [self addChild:self.boat];
 }
+
 - (void)update:(NSTimeInterval)currentTime
 {
-    if (self.boat.physicsBody.affectedByGravity) {
-        [self.drain applyForceToNode:self.boat];
+    if (self.touching) {
+        [self.boat moveTowards:self.touchPoint withTimeInterval:0.6];
+    } else {
+        if (self.boat.physicsBody.affectedByGravity) {
+            [self.drain applyForceToNode:self.boat];
+        }
     }
 
     [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
@@ -89,8 +97,31 @@
     toy.physicsBody.velocity = vector;
 
     toy.name = @"toy";
-    toy.physicsBody.velocity = VectorFromSpeedAngleAndPosition(100, angle, toy.position);//TangentVelocityVectorFromPosition(toy.position, angle, radius);
     [self addChild:toy];
+}
+
+
+#pragma mark - Touch Handling
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = YES;
+    self.touchPoint = [[touches anyObject] locationInNode:self];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touchPoint = [[touches anyObject] locationInNode:self];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = NO;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.touching = NO;
 }
 
 @end
