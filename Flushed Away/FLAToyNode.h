@@ -10,6 +10,20 @@
 
 @interface FLAToyNode : SKSpriteNode
 
++ (instancetype)bearToyNode;
 
++ (instancetype)bikeToyNode;
+
++ (instancetype)carToyNode;
+
++ (instancetype)duckToyNode;
+
++ (instancetype)horseToyNode;
+
++ (instancetype)planeToyNode;
+
++ (instancetype)scooterToyNode;
+
++ (instancetype)soldierToyNode;
 
 @end

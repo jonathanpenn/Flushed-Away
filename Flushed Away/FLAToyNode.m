@@ -10,15 +10,53 @@
 
 @implementation FLAToyNode
 
-- (instancetype)init
++ (instancetype)toyNodeWithImageNamed:(NSString*)image
 {
-    self = [super initWithImageNamed:@"toy-duck"];
-    if (self) {
-        const CGFloat radius = 25;
-        self.size = CGSizeMake(radius*2, radius*2);
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
-    }
-    return self;
+    FLAToyNode* node = [FLAToyNode spriteNodeWithImageNamed:image];
+    node.size = node.texture.size;
+    node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:node.texture.size.width];
+    
+    return node;
+}
+
++ (instancetype)bearToyNode
+{
+    return [self toyNodeWithImageNamed:@"toy-bear"];
+}
+
++ (instancetype)bikeToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-bike"];
+}
+
++ (instancetype)carToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-car"];
+}
+
++ (instancetype)duckToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-duck"];
+}
+
++ (instancetype)horseToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-horse"];
+}
+
++ (instancetype)planeToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-plane"];
+}
+
++ (instancetype)scooterToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-scooter"];
+}
+
++ (instancetype)soldierToyNode
+{
+     return [self toyNodeWithImageNamed:@"toy-soldier"];
 }
 
 @end
