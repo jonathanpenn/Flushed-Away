@@ -40,7 +40,7 @@
 - (void)update:(NSTimeInterval)currentTime
 {
     if (self.boat.physicsBody.affectedByGravity) {
-//        [self.drain applyForceToNode:self.boat];
+        [self.drain applyForceToNode:self.boat];
     }
 
     [self enumerateChildNodesWithName:@"toy" usingBlock:^(SKNode *toy, BOOL *stop) {
