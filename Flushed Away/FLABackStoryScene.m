@@ -9,9 +9,9 @@
 #import "FLABackStoryScene.h"
 #import "FLAHelpScreen.h"
 
-@interface FLABackStoryScene ()
+@interface FLABackStoryScene () <UIScrollViewDelegate>
 
-@property (strong, nonatomic) UILabel* backstoryLabel;
+@property (strong, nonatomic) UIScrollView* scrollView;
 
 @end
 
@@ -34,7 +34,7 @@
     backstoryLabel.numberOfLines = 0;
     backstoryLabel.textColor = [UIColor colorWithRed:79/255.0f green:179/255.0f blue:237/255.0f alpha:1];
     backstoryLabel.font = [UIFont boldSystemFontOfSize:18];[UIFont boldSystemFontOfSize:18];
-    CGRect labelFrame = CGRectMake(35, view.bounds.size.height, 360, view.bounds.size.height);
+    CGRect labelFrame = CGRectMake(0, view.bounds.size.height, 360, view.bounds.size.height);
     
     NSString* backstory = @"While preparing to test your amazing shrinking ray on a full size boat, your two year old child accidentally activated it. Both you and the boat are now smaller than a toy.\n\nYour child then put you in the toilet and flushed it.\n\nWith more toys thrown down the drain, will you be able to last long enough for the shrinking ray to wear off?";
 
@@ -42,18 +42,28 @@
     
     CGSize backstorySize = [backstory sizeWithFont:backstoryLabel.font constrainedToSize:CGSizeMake(labelFrame.size.width, INT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     labelFrame.size.height = backstorySize.height;
-    labelFrame.origin.x = (self.size.width/2) - labelFrame.size.width/2;
     
     backstoryLabel.frame = labelFrame;
-    
-    [view addSubview:backstoryLabel];
-    
-    self.backstoryLabel = backstoryLabel;
 
-    [UIView animateWithDuration:23.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        CGRect labelFrame = self.backstoryLabel.frame;
-        labelFrame.origin.y = -labelFrame.size.height-100;
-        self.backstoryLabel.frame = labelFrame;
+    
+    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake((self.size.width/2) - labelFrame.size.width/2, 0, labelFrame.size.width, view.bounds.size.height)];
+    scrollView.contentSize = CGSizeMake(labelFrame.size.width, labelFrame.size.height * 4);
+
+//    scrollView.backgroundColor = [UIColor whiteColor];
+    [scrollView addSubview:backstoryLabel];
+    
+    [view addSubview:scrollView];
+    
+    self.scrollView = scrollView;
+    
+    CALayer *layer = scrollView.layer;
+    CATransform3D perspectiveTransform = CATransform3DIdentity;
+    perspectiveTransform.m34 = 1.0 / -900;
+    perspectiveTransform = CATransform3DRotate(perspectiveTransform, 45.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
+    layer.transform = perspectiveTransform;
+    
+    [UIView animateWithDuration:25 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height);
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
@@ -61,13 +71,10 @@
 
 - (void)goToNextScene
 {
-    [UIView animateWithDuration:0.0
-                          delay:0.0
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{self.backstoryLabel.frame = ((CALayer *)self.backstoryLabel.layer.presentationLayer).frame;}
-                     completion:^(BOOL finished){}
-     ];
-    [self.backstoryLabel removeFromSuperview];
+    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentOffset.x,self.scrollView.contentOffset.y, 1, 1)
+                                animated:NO];
+    [self.scrollView removeFromSuperview];
+    
     SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
@@ -81,5 +88,4 @@
 {
     [self goToNextScene];
 }
-
 @end
