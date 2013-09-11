@@ -24,13 +24,17 @@
     self.skView.showsNodeCount = YES;
     self.skView.showsDrawCount = YES;
 
-    [self showStartCreditsScene];
+    double delayInSeconds = 0.3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self showStartCreditsScene];
+    });
 }
 
 - (void)showStartCreditsScene
 {
     // Create and configure the scene.
-    SKScene *scene = [FLAStartCreditsScene sceneWithSize:self.skView.bounds.size];
+    SKScene *scene = [FLAPlayScene sceneWithSize:self.skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
 
     // Present the scene.

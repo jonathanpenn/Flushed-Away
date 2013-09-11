@@ -106,7 +106,7 @@ static NSArray* s_methodNames;
     node.physicsBody.categoryBitMask = FLABodyCategoryToy;
     node.physicsBody.contactTestBitMask = FLABodyCategoryDrain | FLABodyCategoryBoat;
     node.physicsBody.collisionBitMask = FLABodyCategoryBoat | FLABodyCategoryToy;
-    node.physicsBody.linearDamping = 0.5 * mass/100;
+    node.physicsBody.linearDamping = 0.2 * mass/100;
     return node;
 }
 

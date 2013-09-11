@@ -48,9 +48,12 @@
     [self addChild:self.drain];
 
     self.boat = [FLABoatNode node];
-    self.boat.position = CGPointMake(-50, 50);
-    CGFloat radius = sqrt(pow(self.boat.position.x,2) + pow(self.boat.position.y, 2));
-    self.boat.physicsBody.velocity = TangentVelocityVectorFromPosition(self.boat.position, (M_PI / 3), radius);
+    CGPoint orbitingCenter = self.drain.position;
+    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y - 100);
+    self.boat.position = RotatePointAroundPoint(startPoint, orbitingCenter, 0);
+    CGFloat force = 100;
+    CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + 0);
+    self.boat.physicsBody.velocity = vector;
 
     [self addChild:self.boat];
 }
@@ -77,10 +80,16 @@
     FLAToyNode *toy = [FLAToyNode randomToyNode];
     const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height)/2;
     const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
-    toy.position = CGPointMake(radius * cos(angle), radius * sin(angle));
+
+    CGPoint orbitingCenter = self.drain.position;
+    CGPoint startPoint = CGPointMake(orbitingCenter.x, orbitingCenter.y - radius);
+    toy.position = RotatePointAroundPoint(startPoint, orbitingCenter, angle);
+    CGFloat force = 150;
+    CGVector vector = VectorFromSpeedAndAngle(force, Deg2Rad(90) + angle);
+    toy.physicsBody.velocity = vector;
+
     toy.name = @"toy";
-    toy.physicsBody.velocity = VectorFromSpeedAngleAndPosition(100, angle, toy.position);//TangentVelocityVectorFromPosition(toy.position, angle, radius);
-    NSLog(@"Toy %@", toy);
+
     [self addChild:toy];
 }
 
