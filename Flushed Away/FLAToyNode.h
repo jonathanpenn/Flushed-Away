@@ -10,6 +10,12 @@
 
 @interface FLAToyNode : SKSpriteNode
 
+/** Generate a random toy node */
+
++ (instancetype)randomToyNode;
+
+/** Individual Toy Nodes */
+
 + (instancetype)bearToyNode;
 
 + (instancetype)bikeToyNode;
