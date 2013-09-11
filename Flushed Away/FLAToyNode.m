@@ -85,8 +85,9 @@ static NSArray* s_methodNames;
 + (instancetype)toyNodeWithImageNamed:(NSString*)image mass:(CGFloat)mass
 {
     FLAToyNode* node = [FLAToyNode spriteNodeWithImageNamed:image];
-    node.size = node.texture.size;
-    node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:node.texture.size.width];
+    const CGFloat maxWidth = 20;
+    node.size = CGSizeMake(maxWidth, maxWidth / node.texture.size.width * node.texture.size.height);
+    node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:MAX(node.size.height, node.size.width)/2];
     node.physicsBody.mass = mass;
     
     return node;
