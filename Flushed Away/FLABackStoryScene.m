@@ -63,8 +63,8 @@
     perspectiveTransform = CATransform3DRotate(perspectiveTransform, 45.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
     layer.transform = perspectiveTransform;
     
-    [UIView animateWithDuration:25 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
-        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height);
+    [UIView animateWithDuration:15 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
     } completion:^(BOOL finished) {
         [self goToNextScene];
     }];
