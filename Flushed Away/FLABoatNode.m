@@ -77,8 +77,8 @@
     CGFloat ang = PolarAdjust(AngleBetweenPoints(position, curPosition));
     self.zRotation = ang;
 
-    self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*20,
-                                          cosf(ang)*dt*20);
+    self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*(300 * timeInterval),
+                                          cosf(ang)*dt*(300 * timeInterval));
 
     CGFloat distRemaining = hypotf(dx, dy);
     if (distRemaining < dt) {
