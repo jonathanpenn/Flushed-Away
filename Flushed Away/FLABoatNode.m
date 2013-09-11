@@ -78,9 +78,6 @@
     self.lastDraggedVector = CGVectorMake(- sinf(ang)*dt*60,
                                           cosf(ang)*dt*60);
 
-    if (self.injured) {
-        return;
-    }
     self.zRotation = ang;
     self.physicsBody.angularVelocity = 0;
 
