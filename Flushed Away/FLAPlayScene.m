@@ -43,6 +43,7 @@
 
     self.world = [FLAWorldNode node];
     [self addChild:self.world];
+    [self.world setup];
 
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;

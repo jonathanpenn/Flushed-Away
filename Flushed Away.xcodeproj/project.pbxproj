@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABA23A2317E02667000F094F /* swirl.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA23A2217E02667000F094F /* swirl.png */; };
+		ABA23A2617E02686000F094F /* FLASwirlNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA23A2517E02686000F094F /* FLASwirlNode.m */; };
 		ABD928E317DFFE9000AE5F64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E217DFFE9000AE5F64 /* Foundation.framework */; };
 		ABD928E517DFFE9000AE5F64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E417DFFE9000AE5F64 /* CoreGraphics.framework */; };
 		ABD928E717DFFE9000AE5F64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E617DFFE9000AE5F64 /* UIKit.framework */; };
@@ -52,6 +54,9 @@
 /* Begin PBXFileReference section */
 		ABA23A1E17E00958000F094F /* FLAMathSchtuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLAMathSchtuff.h; sourceTree = "<group>"; };
 		ABA23A1F17E016F6000F094F /* FLACollisions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLACollisions.h; sourceTree = "<group>"; };
+		ABA23A2217E02667000F094F /* swirl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swirl.png; sourceTree = "<group>"; };
+		ABA23A2417E02686000F094F /* FLASwirlNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLASwirlNode.h; sourceTree = "<group>"; };
+		ABA23A2517E02686000F094F /* FLASwirlNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLASwirlNode.m; sourceTree = "<group>"; };
 		ABD928DF17DFFE9000AE5F64 /* Flushed Away.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flushed Away.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD928E217DFFE9000AE5F64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABD928E417DFFE9000AE5F64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,6 +135,8 @@
 				ABFD135F17DFFFA000E657DB /* FLADrainNode.m */,
 				ABFD136117E0004F00E657DB /* FLAToyNode.h */,
 				ABFD136217E0004F00E657DB /* FLAToyNode.m */,
+				ABA23A2417E02686000F094F /* FLASwirlNode.h */,
+				ABA23A2517E02686000F094F /* FLASwirlNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 				D9ECCFCD17E0037800BB3E95 /* toy-plane@2x.png */,
 				D9ECCFCE17E0037800BB3E95 /* toy-scooter@2x.png */,
 				D9ECCFCF17E0037800BB3E95 /* toy-soldier@2x.png */,
+				ABA23A2217E02667000F094F /* swirl.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -321,6 +329,7 @@
 				ABD9290517DFFE9100AE5F64 /* Images.xcassets in Resources */,
 				D9ECCFD217E0037800BB3E95 /* toy-car@2x.png in Resources */,
 				D9ECCFD117E0037800BB3E95 /* toy-bike@2x.png in Resources */,
+				ABA23A2317E02667000F094F /* swirl.png in Resources */,
 				D9ECCFD517E0037800BB3E95 /* toy-plane@2x.png in Resources */,
 				ABD928FB17DFFE9100AE5F64 /* Main_iPad.storyboard in Resources */,
 				ABD928F817DFFE9100AE5F64 /* Main_iPhone.storyboard in Resources */,
@@ -354,6 +363,7 @@
 				ABFD136317E0004F00E657DB /* FLAToyNode.m in Sources */,
 				ABD9290117DFFE9100AE5F64 /* FLAPlayScene.m in Sources */,
 				ABD928FE17DFFE9100AE5F64 /* FLAViewController.m in Sources */,
+				ABA23A2617E02686000F094F /* FLASwirlNode.m in Sources */,
 				ABFD135D17DFFF9200E657DB /* FLABoatNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

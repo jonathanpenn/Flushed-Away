@@ -10,12 +10,14 @@
 #import "FLABoatNode.h"
 #import "FLAToyNode.h"
 #import "FLADrainNode.h"
+#import "FLASwirlNode.h"
 #import <math.h>
 
 @interface FLAWorldNode ()
 
 @property (nonatomic, strong) FLABoatNode *boat;
 @property (nonatomic, strong) FLADrainNode *drain;
+@property (nonatomic, strong) FLASwirlNode *swirl1, *swirl2;
 
 @property (nonatomic) NSTimeInterval lastTimeToySpawned;
 
@@ -23,21 +25,34 @@
 
 @implementation FLAWorldNode
 
-- (instancetype)init
+- (void)setup
 {
-    self = [super init];
-    if (self) {
-        self.drain = [FLADrainNode node];
-        [self addChild:self.drain];
+    CGFloat max = MAX(self.scene.size.width, self.scene.size.height);
 
-        self.boat = [FLABoatNode node];
-        self.boat.position = CGPointMake(-50, 50);
-        CGFloat radius = sqrt(pow(self.boat.position.x,2) + pow(self.boat.position.y, 2));
-        self.boat.physicsBody.velocity = TangentVelocityVectorFromPosition(self.boat.position, (M_PI / 3), radius);
-        
-        [self addChild:self.boat];
-    }
-    return self;
+    self.swirl1 = [FLASwirlNode node];
+    self.swirl1.size = CGSizeMake(max, max);
+    self.swirl1.alpha = 0.2;
+    [self addChild:self.swirl1];
+    SKAction *spin1 = [SKAction rotateByAngle:1 duration:5];
+    [self.swirl1 runAction:[SKAction repeatActionForever:spin1]];
+
+    self.swirl2 = [FLASwirlNode node];
+    self.swirl2.size = CGSizeMake(max, max);
+    self.swirl2.alpha = 0.1;
+    self.swirl2.zRotation = 1;
+    [self addChild:self.swirl2];
+    SKAction *spin2 = [SKAction rotateByAngle:2 duration:5];
+    [self.swirl2 runAction:[SKAction repeatActionForever:spin2]];
+
+    self.drain = [FLADrainNode node];
+    [self addChild:self.drain];
+
+    self.boat = [FLABoatNode node];
+    self.boat.position = CGPointMake(-50, 50);
+    CGFloat radius = sqrt(pow(self.boat.position.x,2) + pow(self.boat.position.y, 2));
+    self.boat.physicsBody.velocity = TangentVelocityVectorFromPosition(self.boat.position, (M_PI / 3), radius);
+
+    [self addChild:self.boat];
 }
 - (void)update:(NSTimeInterval)currentTime
 {

@@ -10,6 +10,9 @@
 
 @interface FLAWorldNode : SKNode
 
+/// You must call this after you add the node to the scene
+- (void)setup;
+
 - (void)update:(NSTimeInterval)currentTime;
 
 @end
