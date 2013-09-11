@@ -1,5 +1,8 @@
 #import <SpriteKit/SpriteKit.h>
 
+static inline CGFloat Deg2Rad(CGFloat deg) { return deg * M_PI/180; }
+static inline CGFloat Rad2Deg(CGFloat rad) { return rad * 180/M_PI; }
+
 static inline CGFloat DistanceBetweenPoints(CGPoint p1, CGPoint p2) {
     CGFloat dx = p1.x - p2.x;
     CGFloat dy = p1.y - p2.y;
