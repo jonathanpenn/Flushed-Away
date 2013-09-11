@@ -106,8 +106,13 @@ static NSArray* s_methodNames;
     node.physicsBody.categoryBitMask = FLABodyCategoryToy;
     node.physicsBody.contactTestBitMask = FLABodyCategoryDrain | FLABodyCategoryBoat;
     node.physicsBody.collisionBitMask = 0;
-
+    node.physicsBody.linearDamping = 0.5 * mass/100;
     return node;
+}
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%p \tmass: %0.2f \tdamping: %0.2f \tposition: %@ \tvelocity: %0.2f,%0.2f", self, self.physicsBody.mass, self.physicsBody.linearDamping, NSStringFromCGPoint(self.position), self.physicsBody.velocity.dx, self.physicsBody.velocity.dy];
 }
 
 @end

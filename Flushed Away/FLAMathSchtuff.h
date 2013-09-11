@@ -45,3 +45,20 @@ static inline CGFloat SpeedFromVector(CGVector vector) {
     CGFloat hyp = sqrt(vector.dx * vector.dx + vector.dy * vector.dy);
     return hyp;
 }
+
+static inline CGVector TangentVelocityVectorFromPosition(CGPoint position, CGFloat angle, CGFloat radius) {
+    CGFloat tangent = tan(angle) * radius;
+    
+    CGFloat xMult = position.y > 0 ? -1 : 1;
+    CGFloat yMult = position.x > 0 ? 1 : -1;
+    
+    return CGVectorMake(sin(angle) * tangent * xMult, cos(angle) * tangent * yMult);
+}
+
+static inline CGVector VectorFromSpeedAngleAndPosition(CGFloat speed, CGFloat angle, CGPoint position)
+{
+    CGFloat xMult = position.y > 0 ? -1 : 1;
+    CGFloat yMult = position.x > 0 ? 1 : -1;
+    CGVector vector = VectorFromSpeedAndAngle(speed, angle);
+    return CGVectorMake(vector.dx * xMult, vector.dy * yMult);
+}

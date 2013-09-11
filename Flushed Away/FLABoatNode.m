@@ -23,6 +23,7 @@
         self.physicsBody.categoryBitMask = FLABodyCategoryBoat;
         self.physicsBody.contactTestBitMask = FLABodyCategoryDrain;
         self.physicsBody.collisionBitMask = 0;
+        self.physicsBody.linearDamping = 0.0;
     }
     return self;
 }

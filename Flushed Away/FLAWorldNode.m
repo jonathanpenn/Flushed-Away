@@ -31,12 +31,14 @@
         [self addChild:self.drain];
 
         self.boat = [FLABoatNode node];
+        self.boat.position = CGPointMake(-50, 50);
+        CGFloat radius = sqrt(pow(self.boat.position.x,2) + pow(self.boat.position.y, 2));
+        self.boat.physicsBody.velocity = TangentVelocityVectorFromPosition(self.boat.position, (M_PI / 3), radius);
+        
         [self addChild:self.boat];
-        self.boat.position = CGPointMake(50, 80);
     }
     return self;
 }
-
 - (void)update:(NSTimeInterval)currentTime
 {
     if (self.boat.physicsBody.affectedByGravity) {
@@ -62,7 +64,8 @@
     const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
     toy.position = CGPointMake(radius * cos(angle), radius * sin(angle));
     toy.name = @"toy";
-
+    toy.physicsBody.velocity = VectorFromSpeedAngleAndPosition(100, angle, toy.position);//TangentVelocityVectorFromPosition(toy.position, angle, radius);
+    NSLog(@"Toy %@", toy);
     [self addChild:toy];
 }
 
