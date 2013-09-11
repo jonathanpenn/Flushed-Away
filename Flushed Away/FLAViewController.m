@@ -8,6 +8,11 @@
 
 #import "FLAViewController.h"
 #import "FLAPlayScene.h"
+#import "FLAStartCreditsScene.h"
+
+@interface FLAViewController ()
+@property (nonatomic, readonly) SKView *skView;
+@end
 
 @implementation FLAViewController
 
@@ -15,30 +20,39 @@
 {
     [super viewDidLoad];
 
-    // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    
+    self.skView.showsFPS = YES;
+    self.skView.showsNodeCount = YES;
+    self.skView.showsDrawCount = YES;
+
+    [self showStartCreditsScene];
+
+    double delayInSeconds = 1.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self showGamePlayScene];
+    });
+}
+
+- (void)showStartCreditsScene
+{
     // Create and configure the scene.
-    SKScene * scene = [FLAPlayScene sceneWithSize:skView.bounds.size];
+    SKScene *scene = [FLAStartCreditsScene sceneWithSize:self.skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    
+
     // Present the scene.
-    [skView presentScene:scene];
+    [self.skView presentScene:scene];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)showGamePlayScene
 {
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
+    // Create and configure the scene.
+    SKScene *scene = [FLAPlayScene sceneWithSize:self.skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    SKView *view = (SKView *)self.view;
-    view.scene.size = view.bounds.size;
+    SKTransition *transition = [SKTransition fadeWithColor:[SKColor whiteColor] duration:2];
+
+    // Present the scene.
+    [self.skView presentScene:scene transition:transition];
 }
 
 - (BOOL)shouldAutorotate
@@ -49,6 +63,11 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
+}
+
+- (SKView *)skView
+{
+    return (SKView *)self.view;
 }
 
 @end

@@ -16,6 +16,7 @@
 		ABA23A3017E0298F000F094F /* toilet_running_fx_loop.aif in Resources */ = {isa = PBXBuildFile; fileRef = ABA23A2B17E0298F000F094F /* toilet_running_fx_loop.aif */; };
 		ABA23A3317E029BF000F094F /* FLASoundQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA23A3217E029BF000F094F /* FLASoundQueue.m */; };
 		ABA23A3517E029D6000F094F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA23A3417E029D6000F094F /* AVFoundation.framework */; };
+		ABA23A3817E02E21000F094F /* FLAStartCreditsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA23A3717E02E21000F094F /* FLAStartCreditsScene.m */; };
 		ABD928E317DFFE9000AE5F64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E217DFFE9000AE5F64 /* Foundation.framework */; };
 		ABD928E517DFFE9000AE5F64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E417DFFE9000AE5F64 /* CoreGraphics.framework */; };
 		ABD928E717DFFE9000AE5F64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD928E617DFFE9000AE5F64 /* UIKit.framework */; };
@@ -72,6 +73,8 @@
 		ABA23A3117E029BF000F094F /* FLASoundQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLASoundQueue.h; sourceTree = "<group>"; };
 		ABA23A3217E029BF000F094F /* FLASoundQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLASoundQueue.m; sourceTree = "<group>"; };
 		ABA23A3417E029D6000F094F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		ABA23A3617E02E21000F094F /* FLAStartCreditsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAStartCreditsScene.h; sourceTree = "<group>"; };
+		ABA23A3717E02E21000F094F /* FLAStartCreditsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAStartCreditsScene.m; sourceTree = "<group>"; };
 		ABD928DF17DFFE9000AE5F64 /* Flushed Away.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flushed Away.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD928E217DFFE9000AE5F64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABD928E417DFFE9000AE5F64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -162,6 +165,8 @@
 			children = (
 				ABD928FF17DFFE9100AE5F64 /* FLAPlayScene.h */,
 				ABD9290017DFFE9100AE5F64 /* FLAPlayScene.m */,
+				ABA23A3617E02E21000F094F /* FLAStartCreditsScene.h */,
+				ABA23A3717E02E21000F094F /* FLAStartCreditsScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD928F517DFFE9100AE5F64 /* FLAAppDelegate.m in Sources */,
+				ABA23A3817E02E21000F094F /* FLAStartCreditsScene.m in Sources */,
 				ABFD136017DFFFA000E657DB /* FLADrainNode.m in Sources */,
 				ABFD135A17DFFF7600E657DB /* FLAWorldNode.m in Sources */,
 				ABD928F117DFFE9000AE5F64 /* main.m in Sources */,
