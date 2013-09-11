@@ -10,6 +10,7 @@
 #import "FLABoatNode.h"
 #import "FLAToyNode.h"
 #import "FLADrainNode.h"
+#import <math.h>
 
 @interface FLAWorldNode ()
 
@@ -28,6 +29,8 @@
 {
     self = [super init];
     if (self) {
+        self.toys = [NSMutableSet set];
+
         self.drain = [FLADrainNode node];
         [self addChild:self.drain];
 
@@ -54,7 +57,10 @@
 
 - (void)spawnToy
 {
-    FLAToyNode *toy = [FLAToyNode node];
+    FLAToyNode *toy = [FLAToyNode bearToyNode];
+    const CGFloat radius = MAX(self.scene.size.width, self.scene.size.height)/2;
+    const CGFloat angle = arc4random_uniform(2*M_PI * 100) / 100.f;
+    toy.position = CGPointMake(radius * cos(angle), radius * sin(angle));
 
     [self addChild:toy];
     [self.toys addObject:toy];
