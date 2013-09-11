@@ -17,28 +17,51 @@
     if (self) {
         self.backgroundColor = [SKColor blackColor];
         self.anchorPoint = CGPointMake(0.5, 0.5);
-
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        label.fontSize = 20;
-        label.fontColor = [SKColor whiteColor];
-        label.text = @"Backstory";
-        label.position = CGPointMake(0, 0);
-        label.alpha = 1;
-        [self addChild:label];
-
-        double delayInSeconds = 2.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];
-            scene.scaleMode = SKSceneScaleModeAspectFill;
-
-            SKTransition *transition = [SKTransition fadeWithColor:[SKColor blackColor] duration:2];
-
-            // Present the scene.
-            [self.view presentScene:scene transition:transition];
-        });
     }
     return self;
+}
+
+- (void)didMoveToView:(SKView *)view
+{
+    UILabel* backstoryLabel = [[UILabel alloc] init];
+    backstoryLabel.textAlignment = NSTextAlignmentJustified;
+    backstoryLabel.numberOfLines = 0;
+    backstoryLabel.textColor = [UIColor colorWithRed:79/255.0f green:179/255.0f blue:237/255.0f alpha:1];
+    backstoryLabel.font = [UIFont boldSystemFontOfSize:18];[UIFont boldSystemFontOfSize:18];
+    CGRect labelFrame = CGRectMake(35, view.bounds.size.height, 320, view.bounds.size.height);
+    
+    NSString* backstory = @"You are a phenomenal inventor. While preparing to test your amazing shrinking ray on a full size boat, your 2 year old child accidentally activated it. Both you and the boat are now smaller than a toy. But that's not the worst part...\n\nYour child decided to put you in the toilet and flush it. And now is throwing more toys to watch it all go down the drain.\n\nWill you be able to last long enough for the shrinking ray to wear off?";
+
+    backstoryLabel.text = backstory;
+    
+    CGSize backstorySize = [backstory sizeWithFont:backstoryLabel.font constrainedToSize:CGSizeMake(320, INT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    labelFrame.size.height = backstorySize.height;
+    
+    backstoryLabel.frame = labelFrame;
+    
+    [view addSubview:backstoryLabel];
+    
+    [UIView animateWithDuration:17.0 animations:^{
+        backstoryLabel.frame = CGRectMake(35, -labelFrame.size.height, labelFrame.size.width, labelFrame.size.height);
+    } completion:^(BOOL finished) {
+        [self goToNextScene];
+    }];
+}
+
+- (void)goToNextScene
+{
+    SKScene *scene = [FLAHelpScreen sceneWithSize:self.view.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    SKTransition *transition = [SKTransition fadeWithColor:[SKColor blackColor] duration:2];
+    
+    // Present the scene.
+    [self.view presentScene:scene transition:transition];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self goToNextScene];
 }
 
 @end
