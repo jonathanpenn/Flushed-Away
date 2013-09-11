@@ -22,9 +22,9 @@
 
 - (instancetype)init
 {
-    self = [super initWithImageNamed:@"Spaceship"];
+    self = [super initWithImageNamed:@"boat"];
     if (self) {
-        const CGFloat radius = 10;
+        const CGFloat radius = 17;
         self.size = CGSizeMake(radius*2, radius*2);
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
         self.physicsBody.mass = 100;

@@ -41,6 +41,7 @@
 		ABFD135D17DFFF9200E657DB /* FLABoatNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135C17DFFF9200E657DB /* FLABoatNode.m */; };
 		ABFD136017DFFFA000E657DB /* FLADrainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD135F17DFFFA000E657DB /* FLADrainNode.m */; };
 		ABFD136317E0004F00E657DB /* FLAToyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD136217E0004F00E657DB /* FLAToyNode.m */; };
+		D96AA6F117E0B07F00AA908C /* boat.png in Resources */ = {isa = PBXBuildFile; fileRef = D96AA6F017E0B07F00AA908C /* boat.png */; };
 		D9ECCFD017E0037800BB3E95 /* toy-bear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFC817E0037800BB3E95 /* toy-bear@2x.png */; };
 		D9ECCFD117E0037800BB3E95 /* toy-bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFC917E0037800BB3E95 /* toy-bike@2x.png */; };
 		D9ECCFD217E0037800BB3E95 /* toy-car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9ECCFCA17E0037800BB3E95 /* toy-car@2x.png */; };
@@ -114,6 +115,7 @@
 		ABFD135F17DFFFA000E657DB /* FLADrainNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLADrainNode.m; path = ../FLADrainNode.m; sourceTree = "<group>"; };
 		ABFD136117E0004F00E657DB /* FLAToyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAToyNode.h; sourceTree = "<group>"; };
 		ABFD136217E0004F00E657DB /* FLAToyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAToyNode.m; sourceTree = "<group>"; };
+		D96AA6F017E0B07F00AA908C /* boat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boat.png; sourceTree = "<group>"; };
 		D9ECCFC817E0037800BB3E95 /* toy-bear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toy-bear@2x.png"; sourceTree = "<group>"; };
 		D9ECCFC917E0037800BB3E95 /* toy-bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toy-bike@2x.png"; sourceTree = "<group>"; };
 		D9ECCFCA17E0037800BB3E95 /* toy-car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toy-car@2x.png"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				ABA23A2917E0298F000F094F /* intro_music.aif */,
 				ABA23A2A17E0298F000F094F /* toilet_flush_fx.aif */,
 				ABA23A2B17E0298F000F094F /* toilet_running_fx_loop.aif */,
+				D96AA6F017E0B07F00AA908C /* boat.png */,
 			);
 			name = Resources;
 			path = "Flushed Away/Resources";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD9290317DFFE9100AE5F64 /* Spaceship.png in Resources */,
+				D96AA6F117E0B07F00AA908C /* boat.png in Resources */,
 				D9ECCFD417E0037800BB3E95 /* toy-horse@2x.png in Resources */,
 				ABD9290517DFFE9100AE5F64 /* Images.xcassets in Resources */,
 				D9ECCFD217E0037800BB3E95 /* toy-car@2x.png in Resources */,
