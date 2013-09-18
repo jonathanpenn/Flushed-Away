@@ -3,6 +3,8 @@
 A 360iDev Game Jam entry built in Sprite Kit. By Jonathan Penn and Michele
 Titolo.
 
+![Screen Shot](ss.png)
+
 ## Backstory
 
 You are a phenomenal inventor. While preparing to test your amazing shrinking
