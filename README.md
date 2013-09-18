@@ -38,4 +38,4 @@ Intro music lovingly ripped from Future Crew's [Second Reality Demo][sr], Copyri
 
 - [Purple Motion's Action Scene](http://modarchive.org/index.php?request=view_by_moduleid&query=60400)
 - [Skaven's Intro](http://modarchive.org/index.php?request=view_by_moduleid&query=60395)
-- [Vectors.me][vm]
+- [Vectors.me](http://vectors.me)
